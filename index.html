@@ -1,0 +1,1885 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Digital Berg — The Berg Architecture Protocol™ for Brazil Market Entry</title>
+<meta name="description" content="Architecture-led market entry into Brazil. The Berg Architecture Protocol™ delivers structural diagnosis, operational design, and ecosystem activation for international companies entering or scaling in the Brazilian market.">
+<meta name="theme-color" content="#141414">
+<meta name="color-scheme" content="dark">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,300;1,9..144,400&family=Manrope:wght@200;300;400;500;600;700&family=JetBrains+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --black: #141414;
+    --black-soft: #1a1a1a;
+    --black-elevated: #1f1f1f;
+    --bone: #ebe6dc;
+    --bone-soft: #f0ebe1;
+    --bone-dim: #c8c2b3;
+    --ink: #141414;
+    --ink-soft: #2a2a2a;
+    --ink-grey: #4a4a4a;
+    --champagne: #c4b896;
+    --champagne-bright: #d8cfb0;
+    --champagne-dim: #8c8267;
+    --silver: #b8b5ad;
+    --silver-bright: #d6d2c7;
+    --line: rgba(196, 184, 150, 0.18);
+    --line-bright: rgba(196, 184, 150, 0.4);
+    --line-dark: rgba(20, 20, 20, 0.12);
+    --grey: rgba(235, 230, 220, 0.72);
+    --grey-dim: rgba(235, 230, 220, 0.5);
+    
+    --display: 'Fraunces', 'Times New Roman', serif;
+    --sans: 'Manrope', 'Helvetica Neue', system-ui, sans-serif;
+    --mono: 'JetBrains Mono', monospace;
+    
+    --max: 1280px;
+    --gutter: clamp(20px, 5vw, 80px);
+  }
+    
+    --display: 'Cormorant Garamond', 'Times New Roman', serif;
+    --sans: 'Inter Tight', system-ui, sans-serif;
+    --mono: 'JetBrains Mono', monospace;
+    
+    --max: 1280px;
+    --gutter: clamp(20px, 5vw, 80px);
+  }
+  
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { 
+    scroll-behavior: smooth;
+    color-scheme: light dark;
+    -webkit-text-size-adjust: 100%;
+  }
+  
+  body {
+    background: var(--black);
+    color: var(--bone);
+    font-family: var(--sans);
+    font-weight: 300;
+    line-height: 1.6;
+    letter-spacing: 0.005em;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    overflow-x: hidden;
+    forced-color-adjust: none;
+    text-rendering: geometricPrecision;
+  }
+  
+  @media (forced-colors: active) {
+    body { background: var(--black) !important; color: var(--bone) !important; }
+  }
+  
+  ::selection { background: var(--champagne); color: var(--black); }
+  
+  /* Grain texture overlay */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    z-index: 1;
+    pointer-events: none;
+    opacity: 0.04;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3' /%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' /%3E%3C/svg%3E");
+  }
+  
+  .container {
+    max-width: var(--max);
+    margin: 0 auto;
+    padding: 0 var(--gutter);
+    position: relative;
+    z-index: 2;
+  }
+  
+  /* ─── NAVIGATION ─── */
+  nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 100;
+    padding: 28px var(--gutter);
+    background: rgba(20, 20, 20, 0.7);
+    backdrop-filter: blur(24px) saturate(150%);
+    -webkit-backdrop-filter: blur(24px) saturate(150%);
+    border-bottom: 1px solid rgba(196, 184, 150, 0.08);
+    transition: all 0.4s ease;
+  }
+  
+  nav.scrolled { 
+    padding: 18px var(--gutter); 
+    background: rgba(20, 20, 20, 0.92);
+  }
+  
+  .nav-inner {
+    max-width: var(--max);
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+  }
+  
+  .nav-logo {
+    font-family: var(--display);
+    font-size: 20px;
+    font-weight: 400;
+    letter-spacing: 0.2em;
+    color: var(--bone);
+    text-decoration: none;
+    font-variation-settings: "opsz" 36;
+  }
+  
+  .nav-logo span { color: var(--champagne); }
+  
+  /* ─── HERO ─── */
+  .hero {
+    padding: 130px var(--gutter) 100px;
+    display: flex;
+    align-items: center;
+    position: relative;
+    overflow: hidden;
+    min-height: auto;
+  }
+  
+  @media (min-width: 1100px) {
+    .hero {
+      padding: 150px var(--gutter) 120px;
+    }
+  }
+  
+  @media (max-width: 700px) {
+    .hero {
+      padding: 110px var(--gutter) 80px;
+    }
+  }
+  
+  .hero-bg-map {
+    position: absolute;
+    right: -8%;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 70%;
+    height: auto;
+    opacity: 0.45;
+    z-index: 1;
+    filter: contrast(1.2) brightness(0.85);
+    mix-blend-mode: screen;
+    pointer-events: none;
+  }
+  
+  @media (max-width: 900px) {
+    .hero-bg-map {
+      width: 130%;
+      right: -30%;
+      opacity: 0.22;
+    }
+  }
+  
+  .hero-inner {
+    max-width: var(--max);
+    margin: 0 auto;
+    width: 100%;
+    position: relative;
+    z-index: 3;
+  }
+  
+  .hero-eyebrow {
+    font-family: var(--mono);
+    font-size: 10.5px;
+    font-weight: 400;
+    letter-spacing: 0.32em;
+    text-transform: uppercase;
+    color: var(--champagne);
+    margin-bottom: 40px;
+    display: flex;
+    align-items: center;
+    gap: 18px;
+    opacity: 0;
+    animation: fadeUp 1s 0.2s ease forwards;
+  }
+  
+  .hero-eyebrow::before {
+    content: '';
+    width: 36px;
+    height: 1px;
+    background: var(--champagne);
+  }
+  
+  .hero h1 {
+    font-family: var(--display);
+    font-weight: 300;
+    font-size: clamp(38px, 5.5vw, 78px);
+    line-height: 0.98;
+    letter-spacing: -0.025em;
+    color: var(--bone);
+    max-width: 16ch;
+    opacity: 0;
+    animation: fadeUp 1.2s 0.4s ease forwards;
+    font-variation-settings: "opsz" 144, "SOFT" 30;
+  }
+  
+  .hero h1 em {
+    font-style: italic;
+    color: var(--champagne);
+    font-weight: 300;
+    font-variation-settings: "opsz" 144, "SOFT" 100;
+  }
+  
+  .hero-sub {
+    font-family: var(--sans);
+    font-size: clamp(14px, 1.15vw, 16px);
+    line-height: 1.65;
+    color: var(--grey);
+    max-width: 52ch;
+    margin-top: 32px;
+    font-weight: 300;
+    letter-spacing: 0.005em;
+    opacity: 0;
+    animation: fadeUp 1.2s 0.6s ease forwards;
+  }
+  
+  .hero-actions {
+    margin-top: 44px;
+    display: flex;
+    gap: 28px;
+    align-items: center;
+    flex-wrap: wrap;
+    opacity: 0;
+    animation: fadeUp 1.2s 0.8s ease forwards;
+  }
+  
+  .btn-primary {
+    font-family: var(--sans);
+    font-size: 11.5px;
+    font-weight: 500;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--black);
+    background: var(--champagne);
+    padding: 16px 32px;
+    text-decoration: none;
+    border: 1px solid var(--champagne);
+    transition: all 0.5s cubic-bezier(0.65, 0, 0.35, 1);
+    position: relative;
+    overflow: hidden;
+    display: inline-flex;
+    align-items: center;
+    gap: 14px;
+  }
+  
+  .btn-primary::after {
+    content: '→';
+    transition: transform 0.5s ease;
+    font-size: 14px;
+  }
+  
+  .btn-primary:hover {
+    background: var(--champagne-bright);
+    border-color: var(--champagne-bright);
+  }
+  
+  .btn-primary:hover::after { transform: translateX(6px); }
+  
+  .btn-secondary {
+    font-family: var(--sans);
+    font-size: 11.5px;
+    font-weight: 500;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--bone-dim);
+    text-decoration: none;
+    border-bottom: 1px solid rgba(196, 184, 150, 0.3);
+    padding-bottom: 4px;
+    transition: all 0.4s ease;
+  }
+  
+  .btn-secondary:hover { color: var(--champagne); border-color: var(--champagne); }
+  
+  /* ─── SECTION SHARED ─── */
+  section { padding: clamp(80px, 12vw, 160px) 0; position: relative; }
+  
+  .section-eyebrow {
+    font-family: var(--mono);
+    font-size: 11px;
+    font-weight: 400;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--champagne);
+    margin-bottom: 32px;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+  }
+  
+  .section-eyebrow::before {
+    content: '';
+    width: 32px;
+    height: 1px;
+    background: var(--champagne);
+  }
+  
+  h2 {
+    font-family: var(--display);
+    font-weight: 300;
+    font-size: clamp(28px, 4vw, 52px);
+    line-height: 1.08;
+    letter-spacing: -0.02em;
+    color: var(--bone);
+    margin-bottom: 28px;
+    max-width: 22ch;
+    font-variation-settings: "opsz" 144, "SOFT" 50;
+  }
+  
+  h2 em { 
+    font-style: italic; 
+    color: var(--champagne);
+    font-variation-settings: "opsz" 144, "SOFT" 100;
+  }
+  
+  h3 {
+    font-family: var(--display);
+    font-weight: 400;
+    font-size: clamp(20px, 2.2vw, 28px);
+    line-height: 1.2;
+    letter-spacing: -0.015em;
+    color: var(--bone);
+    font-variation-settings: "opsz" 36;
+  }
+  
+  p.lead {
+    font-family: var(--sans);
+    font-size: clamp(16px, 1.4vw, 19px);
+    line-height: 1.7;
+    color: var(--grey);
+    max-width: 64ch;
+    font-weight: 300;
+  }
+  
+  p.body {
+    font-family: var(--sans);
+    font-size: 15px;
+    line-height: 1.75;
+    color: var(--grey);
+    font-weight: 300;
+    max-width: 72ch;
+  }
+  
+  /* ─── PROBLEM SECTION (LIGHT) ─── */
+  .problem {
+    background: var(--bone);
+    color: var(--ink);
+    border-top: 1px solid var(--line);
+    border-bottom: 1px solid var(--line);
+  }
+  
+  .problem .section-eyebrow,
+  .problem .section-eyebrow {
+    color: var(--champagne-dim) !important;
+  }
+  
+  .problem .section-eyebrow::before {
+    background: var(--champagne-dim) !important;
+  }
+  
+  .problem h2 {
+    color: var(--ink) !important;
+  }
+  
+  .problem h2 em {
+    color: var(--champagne-dim) !important;
+  }
+  
+  .problem p.lead {
+    color: var(--ink-soft) !important;
+  }
+  
+  .problem p.body {
+    color: var(--ink-grey) !important;
+  }
+  
+  .problem-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: clamp(40px, 6vw, 100px);
+    align-items: start;
+  }
+  
+  @media (max-width: 800px) { .problem-grid { grid-template-columns: 1fr; gap: 40px; } }
+  
+  .problem .pull-quote {
+    font-family: var(--display);
+    font-style: italic;
+    font-size: clamp(22px, 2.6vw, 32px);
+    line-height: 1.4;
+    color: var(--champagne-dim) !important;
+    border-left: 1px solid var(--champagne-dim);
+    padding-left: 32px;
+    margin-top: 48px;
+  }
+  
+  .pull-quote {
+    font-family: var(--display);
+    font-style: italic;
+    font-size: clamp(22px, 2.6vw, 32px);
+    line-height: 1.4;
+    color: var(--champagne);
+    border-left: 1px solid var(--champagne);
+    padding-left: 32px;
+    margin-top: 48px;
+  }
+  
+  /* ─── PROTOCOL SECTION ─── */
+  .protocol-intro {
+    text-align: center;
+    margin-bottom: 100px;
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  
+  .protocol-intro h2 {
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+    max-width: 22ch;
+  }
+  
+  .protocol-intro h2 .tm {
+    font-size: 0.35em;
+    vertical-align: super;
+    color: var(--champagne);
+    font-style: normal;
+    font-weight: 400;
+    letter-spacing: 0;
+  }
+  
+  .protocol-subtitle {
+    font-family: var(--display);
+    font-style: italic;
+    font-weight: 300;
+    font-size: clamp(17px, 1.7vw, 20px);
+    color: var(--bone-dim);
+    line-height: 1.55;
+    margin: 28px auto 0;
+    max-width: 56ch;
+    font-variation-settings: "opsz" 36, "SOFT" 100;
+    letter-spacing: 0.005em;
+  }
+  
+  .protocol-body {
+    margin-top: 44px;
+    font-size: 14.5px;
+    line-height: 1.8;
+    color: var(--grey);
+    max-width: 68ch;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: left;
+    font-weight: 300;
+    letter-spacing: 0.005em;
+  }
+  
+  .phases {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 0;
+    margin-top: 40px;
+    border-top: 1px solid var(--line);
+    border-bottom: 1px solid var(--line);
+  }
+  
+  @media (max-width: 900px) {
+    .phases { grid-template-columns: 1fr; }
+    .phase { border-right: none !important; border-bottom: 1px solid var(--line); }
+    .phase:last-child { border-bottom: none; }
+  }
+  
+  .phase {
+    padding: 56px 36px;
+    border-right: 1px solid var(--line);
+    transition: background 0.5s ease;
+    position: relative;
+  }
+  
+  .phase:last-child { border-right: none; }
+  
+  .phase:hover { background: var(--black-elevated); }
+  
+  .phase-number {
+    font-family: var(--mono);
+    font-size: 10.5px;
+    font-weight: 400;
+    letter-spacing: 0.32em;
+    color: var(--champagne);
+    margin-bottom: 28px;
+  }
+  
+  .phase-name {
+    font-family: var(--display);
+    font-weight: 300;
+    font-size: 30px;
+    color: var(--bone);
+    margin-bottom: 22px;
+    letter-spacing: -0.02em;
+    font-variation-settings: "opsz" 60;
+  }
+  
+  .phase-desc {
+    font-family: var(--sans);
+    font-size: 13.5px;
+    line-height: 1.7;
+    color: var(--grey);
+    font-weight: 300;
+    letter-spacing: 0.005em;
+  }
+  
+  .protocol-footer {
+    text-align: center;
+    margin-top: 56px;
+    font-family: var(--display);
+    font-style: italic;
+    font-size: 17px;
+    color: var(--bone-dim);
+    font-weight: 300;
+    font-variation-settings: "opsz" 36, "SOFT" 100;
+  }
+  
+  /* ─── DELIVERABLES (DARK) ─── */
+  .deliverables {
+    background: var(--black);
+    border-top: 1px solid var(--line);
+    border-bottom: 1px solid var(--line);
+  }
+  
+  .grid-4x2 {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1px;
+    background: var(--line);
+    border: 1px solid var(--line);
+    margin-top: 64px;
+  }
+  
+  @media (max-width: 1000px) { .grid-4x2 { grid-template-columns: repeat(2, 1fr); } }
+  @media (max-width: 600px) { .grid-4x2 { grid-template-columns: 1fr; } }
+  
+  .deliverable {
+    background: var(--black-soft);
+    padding: 40px 32px;
+    transition: background 0.3s ease;
+  }
+  
+  .deliverable:hover { background: var(--black-elevated); }
+  
+  .deliverable-icon {
+    width: 8px;
+    height: 8px;
+    background: var(--champagne);
+    margin-bottom: 24px;
+  }
+  
+  .deliverable h4 {
+    font-family: var(--display);
+    font-size: 22px;
+    font-weight: 300;
+    color: var(--bone);
+    margin-bottom: 14px;
+    line-height: 1.2;
+    letter-spacing: -0.02em;
+    font-variation-settings: "opsz" 60;
+  }
+  
+  .deliverable p {
+    font-family: var(--sans);
+    font-size: 13.5px;
+    line-height: 1.65;
+    color: var(--grey);
+    font-weight: 300;
+    letter-spacing: 0.005em;
+  }
+  
+  .deliverables-footer {
+    text-align: center;
+    margin-top: 64px;
+    font-family: var(--display);
+    font-style: italic;
+    font-weight: 300;
+    font-size: 19px;
+    color: var(--bone-dim);
+    font-variation-settings: "opsz" 36, "SOFT" 100;
+  }
+  
+  /* ─── ENGAGEMENT TIERS ─── */
+  .tiers {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+    margin-top: 64px;
+  }
+  
+  @media (max-width: 1000px) { .tiers { grid-template-columns: 1fr; } }
+  
+  .tier {
+    background: var(--black-soft);
+    border: 1px solid var(--line);
+    padding: 48px 36px;
+    display: flex;
+    flex-direction: column;
+    transition: all 0.4s ease;
+    position: relative;
+  }
+  
+  .tier:hover {
+    border-color: var(--champagne);
+    transform: translateY(-4px);
+  }
+  
+  .tier-tag {
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.2em;
+    color: var(--champagne);
+    text-transform: uppercase;
+    margin-bottom: 20px;
+  }
+  
+  .tier-name {
+    font-family: var(--display);
+    font-size: 30px;
+    font-weight: 300;
+    color: var(--bone);
+    margin-bottom: 8px;
+    letter-spacing: -0.02em;
+    font-variation-settings: "opsz" 60;
+  }
+  
+  .tier-phase {
+    font-family: var(--sans);
+    font-size: 12px;
+    color: var(--champagne-dim);
+    margin-bottom: 28px;
+    font-weight: 400;
+    letter-spacing: 0.05em;
+  }
+  
+  .tier-for {
+    font-family: var(--sans);
+    font-size: 13.5px;
+    color: var(--grey);
+    line-height: 1.65;
+    margin-bottom: 32px;
+    font-weight: 300;
+    border-bottom: 1px solid var(--line);
+    padding-bottom: 28px;
+    letter-spacing: 0.005em;
+  }
+  
+  .tier-list {
+    list-style: none;
+    margin-bottom: 32px;
+    flex-grow: 1;
+  }
+  
+  .tier-list li {
+    font-family: var(--sans);
+    font-size: 13px;
+    line-height: 1.65;
+    color: var(--bone-dim);
+    padding-left: 18px;
+    position: relative;
+    margin-bottom: 12px;
+    font-weight: 300;
+    letter-spacing: 0.005em;
+  }
+  
+  .tier-list li::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 9px;
+    width: 6px;
+    height: 1px;
+    background: var(--champagne);
+  }
+  
+  .tier-meta {
+    border-top: 1px solid var(--line);
+    padding-top: 24px;
+    margin-bottom: 28px;
+  }
+  
+  .tier-meta-row {
+    display: flex;
+    justify-content: space-between;
+    font-family: var(--sans);
+    font-size: 13px;
+    margin-bottom: 8px;
+  }
+  
+  .tier-meta-label { color: var(--grey-dim); letter-spacing: 0.05em; }
+  .tier-meta-value { color: var(--champagne); font-weight: 500; }
+  
+  .tier-cta {
+    font-family: var(--sans);
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--bone);
+    text-decoration: none;
+    text-align: center;
+    border: 1px solid var(--line-bright);
+    padding: 14px;
+    transition: all 0.3s ease;
+  }
+  
+  .tier-cta:hover { background: var(--champagne); color: var(--black); border-color: var(--champagne); }
+  
+  .run-banner {
+    margin-top: 48px;
+    padding: 32px 40px;
+    border: 1px solid var(--line);
+    background: var(--black-soft);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 24px;
+  }
+  
+  .run-banner-left h4 {
+    font-family: var(--display);
+    font-size: 22px;
+    color: var(--bone);
+    font-weight: 300;
+    margin-bottom: 8px;
+    letter-spacing: -0.015em;
+    font-variation-settings: "opsz" 60;
+  }
+  
+  .run-banner-left p {
+    font-family: var(--sans);
+    font-size: 13px;
+    color: var(--grey);
+    font-style: italic;
+  }
+  
+  .run-banner-right {
+    font-family: var(--mono);
+    font-size: 13px;
+    color: var(--champagne);
+    letter-spacing: 0.05em;
+  }
+  
+  /* ─── ECOSYSTEM (LIGHT) ─── */
+  .ecosystem {
+    background: var(--bone);
+    color: var(--ink);
+    border-top: 1px solid var(--line);
+    border-bottom: 1px solid var(--line);
+    text-align: center;
+  }
+  
+  .ecosystem .container { max-width: 800px; }
+  
+  .ecosystem .section-eyebrow {
+    color: var(--champagne-dim) !important;
+  }
+  
+  .ecosystem .section-eyebrow::before {
+    background: var(--champagne-dim) !important;
+  }
+  
+  .ecosystem h2 { 
+    margin: 0 auto 32px; 
+    text-align: center;
+    color: var(--ink) !important;
+  }
+  
+  .ecosystem h2 em {
+    color: var(--champagne-dim) !important;
+  }
+  
+  .ecosystem p.body { 
+    margin-left: auto; 
+    margin-right: auto; 
+    text-align: left;
+    color: var(--ink-soft) !important;
+  }
+  
+  .ecosystem-note {
+    margin-top: 32px;
+    font-family: var(--display);
+    font-style: italic;
+    font-size: 16px;
+    color: var(--champagne-dim) !important;
+    text-align: center !important;
+    font-variation-settings: "opsz" 36, "SOFT" 100;
+    font-weight: 300;
+  }
+  
+  .ecosystem-cta-wrap {
+    margin-top: 44px;
+    text-align: center;
+  }
+  
+  .btn-ecosystem {
+    display: inline-flex;
+    align-items: center;
+    gap: 14px;
+    font-family: var(--sans);
+    font-size: 11.5px;
+    font-weight: 500;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--ink);
+    background: transparent;
+    padding: 16px 32px;
+    text-decoration: none;
+    border: 1px solid var(--ink);
+    transition: all 0.5s cubic-bezier(0.65, 0, 0.35, 1);
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .btn-ecosystem::after {
+    content: '→';
+    transition: transform 0.5s ease;
+    font-size: 14px;
+  }
+  
+  .btn-ecosystem:hover {
+    background: var(--ink);
+    color: var(--bone);
+  }
+  
+  .btn-ecosystem:hover::after { transform: translateX(6px); }
+  
+  /* ─── ADVISORY (DISTINCT TONE) ─── */
+  .advisory {
+    background: var(--black);
+    text-align: center;
+    border-top: 1px solid var(--line);
+    border-bottom: 1px solid var(--line);
+  }
+  
+  .advisory .container { max-width: 700px; }
+  
+  .advisory h3 {
+    font-family: var(--display);
+    font-size: clamp(26px, 3.2vw, 38px);
+    font-weight: 300;
+    font-style: italic;
+    color: var(--bone);
+    margin-bottom: 36px;
+    letter-spacing: -0.015em;
+    font-variation-settings: "opsz" 144, "SOFT" 100;
+  }
+  
+  .advisory p {
+    font-family: var(--sans);
+    font-size: 14.5px;
+    line-height: 1.8;
+    color: var(--grey);
+    font-weight: 300;
+    margin-bottom: 20px;
+    text-align: left;
+    letter-spacing: 0.005em;
+  }
+  
+  .advisory-cta {
+    margin-top: 44px;
+    display: inline-block;
+  }
+  
+  /* ─── WHO THIS IS FOR ─── */
+  .who-list {
+    list-style: none;
+    margin-top: 48px;
+    max-width: 70ch;
+  }
+  
+  .who-list li {
+    font-family: var(--sans);
+    font-size: 16px;
+    line-height: 1.65;
+    color: var(--bone-dim);
+    padding: 14px 0 14px 32px;
+    border-bottom: 1px solid var(--line);
+    position: relative;
+    font-weight: 300;
+  }
+  
+  .who-list li::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 22px;
+    width: 14px;
+    height: 1px;
+    background: var(--champagne);
+  }
+  
+  .who-disclaimer {
+    margin-top: 40px;
+    font-family: var(--display);
+    font-style: italic;
+    font-size: 17px;
+    color: var(--grey-dim);
+    max-width: 70ch;
+  }
+  
+  /* ─── FOUNDER (LIGHT) ─── */
+  .founder {
+    background: var(--bone);
+    color: var(--ink);
+    border-top: 1px solid var(--line);
+    border-bottom: 1px solid var(--line);
+    text-align: center;
+  }
+  
+  .founder-narrow {
+    max-width: 720px;
+    margin: 0 auto;
+  }
+  
+  .founder .section-eyebrow {
+    color: var(--champagne-dim) !important;
+    justify-content: center;
+  }
+  
+  .founder .section-eyebrow::before {
+    background: var(--champagne-dim) !important;
+  }
+  
+  .founder h2 {
+    color: var(--ink) !important;
+    max-width: 18ch;
+  }
+  
+  .founder h2 em {
+    color: var(--champagne-dim) !important;
+  }
+  
+  .founder p.body {
+    color: var(--ink-grey) !important;
+    font-size: 15px;
+    line-height: 1.75;
+  }
+  
+  .founder-quote-centered {
+    margin: 56px auto 0;
+    font-family: var(--display);
+    font-style: italic;
+    font-weight: 300;
+    font-size: clamp(22px, 2.6vw, 30px);
+    color: var(--champagne-dim);
+    line-height: 1.45;
+    letter-spacing: -0.005em;
+    font-variation-settings: "opsz" 144, "SOFT" 100;
+    max-width: 30ch;
+  }
+  
+  .founder-quote-mark {
+    display: block;
+    color: var(--champagne);
+    font-size: 36px;
+    margin-bottom: 16px;
+    font-style: normal;
+  }
+  
+  /* ─── FOUNDER FOTO REMOVIDA ─── */
+  
+  /* ─── FAQ ─── */
+  .faq-list { margin-top: 64px; }
+  
+  .faq-item {
+    border-bottom: 1px solid var(--line);
+    padding: 28px 0;
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
+  
+  .faq-item:first-child { border-top: 1px solid var(--line); }
+  
+  .faq-q {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 24px;
+  }
+  
+  .faq-q h4 {
+    font-family: var(--display);
+    font-size: clamp(17px, 1.7vw, 21px);
+    font-weight: 400;
+    color: var(--bone);
+    line-height: 1.4;
+    transition: color 0.3s ease;
+    letter-spacing: -0.01em;
+    font-variation-settings: "opsz" 36;
+  }
+  
+  .faq-toggle {
+    flex-shrink: 0;
+    width: 24px;
+    height: 24px;
+    border: 1px solid var(--line-bright);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--champagne);
+    font-family: var(--mono);
+    font-size: 14px;
+    transition: all 0.3s ease;
+  }
+  
+  .faq-a {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.5s cubic-bezier(0.65, 0, 0.35, 1), padding 0.3s ease;
+    padding: 0 0 0 0;
+    font-family: var(--sans);
+    font-size: 15px;
+    line-height: 1.75;
+    color: var(--grey);
+    font-weight: 300;
+    max-width: 80ch;
+  }
+  
+  .faq-item.open .faq-a {
+    max-height: 400px;
+    padding-top: 20px;
+  }
+  
+  .faq-item.open .faq-toggle { background: var(--champagne); color: var(--black); border-color: var(--champagne); }
+  .faq-item.open .faq-q h4 { color: var(--champagne); }
+  .faq-item:hover .faq-q h4 { color: var(--champagne); }
+  
+  /* ─── FINAL CTA ─── */
+  .final-cta {
+    text-align: center;
+    background: var(--black);
+    padding: clamp(100px, 14vw, 180px) 0;
+    border-top: 1px solid var(--line);
+  }
+  
+  .final-cta h2 {
+    margin: 0 auto 32px;
+    text-align: center;
+    max-width: 18ch;
+  }
+  
+  .final-cta p {
+    margin: 0 auto 56px;
+    text-align: left;
+    max-width: 60ch;
+  }
+  
+  /* ─── FOOTER ─── */
+  footer {
+    background: var(--black-soft);
+    padding: 80px 0 40px;
+    border-top: 1px solid var(--line);
+  }
+  
+  .footer-grid {
+    display: grid;
+    grid-template-columns: 1.5fr 1fr 1fr 1fr;
+    gap: 48px;
+    margin-bottom: 64px;
+  }
+  
+  @media (max-width: 800px) {
+    .footer-grid { grid-template-columns: 1fr 1fr; }
+  }
+  @media (max-width: 480px) {
+    .footer-grid { grid-template-columns: 1fr; }
+  }
+  
+  .footer-brand h4 {
+    font-family: var(--display);
+    font-size: 22px;
+    font-weight: 400;
+    color: var(--bone);
+    margin-bottom: 14px;
+    letter-spacing: 0.2em;
+    font-variation-settings: "opsz" 36;
+  }
+  
+  .footer-brand h4 span { color: var(--champagne); }
+  
+  .footer-brand p {
+    font-family: var(--sans);
+    font-size: 13px;
+    color: var(--grey-dim);
+    line-height: 1.6;
+    font-weight: 300;
+  }
+  
+  .footer-col h5 {
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--champagne);
+    margin-bottom: 20px;
+    font-weight: 400;
+  }
+  
+  .footer-col p, .footer-col a {
+    font-family: var(--sans);
+    font-size: 13px;
+    color: var(--grey);
+    line-height: 1.8;
+    text-decoration: none;
+    display: block;
+    transition: color 0.3s ease;
+    font-weight: 300;
+  }
+  
+  .footer-col a:hover { color: var(--champagne); }
+  
+  .footer-bottom {
+    border-top: 1px solid var(--line);
+    padding-top: 32px;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 16px;
+  }
+  
+  .footer-bottom p {
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    color: var(--grey-dim);
+  }
+  
+  .footer-tagline {
+    font-family: var(--display);
+    font-style: italic;
+    font-size: 13px;
+    color: var(--champagne);
+  }
+  
+  /* ─── ANIMATIONS ─── */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(30px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  
+  .reveal {
+    opacity: 0;
+    transform: translateY(40px);
+    transition: all 1.2s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  
+  .reveal.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  
+  /* ─── DECORATIVE ELEMENTS ─── */
+  .decorative-line {
+    width: 100%;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--champagne), transparent);
+    margin: 0;
+    opacity: 0.3;
+  }
+  
+  /* ─── MODAL ─── */
+  .modal-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.85);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    z-index: 1000;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    opacity: 0;
+    transition: opacity 0.4s ease;
+  }
+  
+  .modal-overlay.active {
+    display: flex;
+    opacity: 1;
+  }
+  
+  .modal {
+    background: var(--black-soft);
+    border: 1px solid var(--champagne);
+    max-width: 560px;
+    width: 100%;
+    max-height: 90vh;
+    overflow-y: auto;
+    padding: 56px 48px;
+    position: relative;
+    transform: translateY(20px);
+    transition: transform 0.4s ease;
+  }
+  
+  .modal-overlay.active .modal { transform: translateY(0); }
+  
+  .modal-close {
+    position: absolute;
+    top: 20px;
+    right: 24px;
+    background: none;
+    border: none;
+    color: var(--bone-dim);
+    font-size: 24px;
+    cursor: pointer;
+    width: 32px;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: color 0.3s ease;
+  }
+  
+  .modal-close:hover { color: var(--champagne); }
+  
+  .modal h3 {
+    font-family: var(--display);
+    font-size: 30px;
+    font-weight: 300;
+    color: var(--bone);
+    margin-bottom: 12px;
+    line-height: 1.2;
+    letter-spacing: -0.02em;
+    font-variation-settings: "opsz" 60;
+  }
+  
+  .modal-subtitle {
+    font-family: var(--sans);
+    font-size: 14px;
+    color: var(--grey);
+    margin-bottom: 36px;
+    font-weight: 300;
+  }
+  
+  .form-group { margin-bottom: 24px; }
+  
+  .form-label {
+    display: block;
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--champagne);
+    margin-bottom: 10px;
+    font-weight: 400;
+  }
+  
+  .form-input,
+  .form-textarea,
+  .form-select {
+    width: 100%;
+    background: transparent;
+    border: none;
+    border-bottom: 1px solid var(--line-bright);
+    padding: 12px 0;
+    color: var(--bone);
+    font-family: var(--sans);
+    font-size: 15px;
+    font-weight: 300;
+    transition: border-color 0.3s ease;
+  }
+  
+  .form-input:focus,
+  .form-textarea:focus,
+  .form-select:focus {
+    outline: none;
+    border-color: var(--champagne);
+  }
+  
+  .form-textarea {
+    resize: vertical;
+    min-height: 80px;
+    padding-top: 12px;
+    line-height: 1.5;
+  }
+  
+  .form-select {
+    cursor: pointer;
+    appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath d='M2 4l4 4 4-4' stroke='%23c4b896' stroke-width='1.5' fill='none'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 4px center;
+  }
+  
+  .form-select option {
+    background: var(--black);
+    color: var(--bone);
+  }
+  
+  .form-submit {
+    width: 100%;
+    margin-top: 16px;
+    padding: 16px;
+    background: var(--champagne);
+    color: var(--black);
+    border: none;
+    font-family: var(--sans);
+    font-size: 13px;
+    font-weight: 500;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: background 0.3s ease;
+  }
+  
+  .form-submit:hover { background: var(--champagne-bright); }
+  
+  .form-success {
+    display: none;
+    text-align: center;
+    padding: 40px 0;
+  }
+  
+  .form-success.active { display: block; }
+  
+  .form-success h3 {
+    color: var(--champagne);
+    margin-bottom: 16px;
+  }
+  
+  .form-success p {
+    font-family: var(--sans);
+    color: var(--grey);
+    font-size: 15px;
+    line-height: 1.6;
+  }
+  
+  /* Hide scrollbar in modal but keep functionality */
+  .modal::-webkit-scrollbar { width: 4px; }
+  .modal::-webkit-scrollbar-track { background: transparent; }
+  .modal::-webkit-scrollbar-thumb { background: var(--champagne-dim); }
+</style>
+</head>
+<body>
+
+<!-- ═══ NAVIGATION ═══ -->
+<nav id="nav">
+  <div class="nav-inner">
+    <a href="#top" class="nav-logo">D<span>BERG</span></a>
+  </div>
+</nav>
+
+<!-- ═══ HERO ═══ -->
+<section class="hero" id="top">
+  <img src="brazil-map.png" alt="" class="hero-bg-map">
+  <div class="hero-inner">
+    <div class="hero-eyebrow">Validate the structure before deploying capital</div>
+    <h1>Brazil doesn't <em>punish ambition.</em> It punishes the absence of architecture.</h1>
+    <p class="hero-sub">We help international companies enter and operate in Brazil through the Berg Architecture Protocol™ — a four-phase method that builds the operational foundation most foreign operations skip.</p>
+    <div class="hero-actions">
+      <a href="#" class="btn-primary" onclick="openModal(); return false;">Schedule a Strategic Conversation</a>
+      <a href="#protocol" class="btn-secondary">Explore the Protocol</a>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ PROBLEM ═══ -->
+<section class="problem reveal">
+  <div class="container">
+    <div class="section-eyebrow">The Problem</div>
+    <div class="problem-grid">
+      <div>
+        <h2>The expensive part of market entry is <em>not marketing.</em></h2>
+      </div>
+      <div>
+        <p class="lead">Most expansion delays don't come from Brazil itself. They come from missing rails: invoicing, contracts, governance, and the HQ ↔ Brazil operating model.</p>
+        <p class="body" style="margin-top: 24px;">When those aren't validated early, capital accelerates friction instead of growth. By the time the symptoms surface — slow conversions, disengaged teams, contracts that don't close, regulatory surprises — the cost of correction is already on the table.</p>
+        <div class="pull-quote">Structure before capital.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ PROTOCOL ═══ -->
+<section id="protocol" class="reveal">
+  <div class="container">
+    <div class="protocol-intro">
+      <div class="section-eyebrow" style="justify-content: center;">The Method</div>
+      <h2>The Berg Architecture Protocol<span class="tm">™</span></h2>
+      <p class="protocol-subtitle">A four-phase method for international market entry — built on bicultural intelligence, modular by design, and structured around a single principle: the operation must hold before it moves.</p>
+      <p class="protocol-body">The Protocol is the architectural backbone of every Digital Berg engagement. Each phase is custom-scoped to the client's sector, geography, and operational maturity — but the sequence is inviolable. You cannot architect what hasn't been diagnosed. You cannot activate what hasn't been architected. The Protocol enforces structural discipline where most market entries default to improvisation.</p>
+    </div>
+    
+    <div class="phases">
+      <div class="phase">
+        <div class="phase-number">Phase 01</div>
+        <h3 class="phase-name">Diagnose</h3>
+        <p class="phase-desc">Structural read of the company's entry thesis, internal capabilities, and exposure across five risk dimensions. Output: Risk Framework Report with G0–G3 decision gates.</p>
+      </div>
+      <div class="phase">
+        <div class="phase-number">Phase 02</div>
+        <h3 class="phase-name">Architect</h3>
+        <p class="phase-desc">Custom design of the operational architecture: entity, tax, governance, distribution, hiring logic, compliance. A blueprint the client can execute internally — or hand back to us.</p>
+      </div>
+      <div class="phase">
+        <div class="phase-number">Phase 03</div>
+        <h3 class="phase-name">Activate</h3>
+        <p class="phase-desc">Full implementation. Ecosystem connections, partner onboarding, governance setup, local team integration, operational handover. The DBerg Ecosystem deployed.</p>
+      </div>
+      <div class="phase">
+        <div class="phase-number">Phase 04</div>
+        <h3 class="phase-name">Sustain</h3>
+        <p class="phase-desc">Ongoing executive-level oversight as the operation matures. Quarterly recalibration. Direct access to the founder. Strategic continuity by design.</p>
+      </div>
+    </div>
+    
+    <p class="protocol-footer">Choose where to enter the Protocol. The sequence stays intact.</p>
+  </div>
+</section>
+
+<!-- ═══ DELIVERABLES ═══ -->
+<section class="deliverables reveal">
+  <div class="container">
+    <div class="section-eyebrow">Deliverables</div>
+    <h2>What an engagement <em>delivers.</em></h2>
+    <p class="lead">Every Protocol engagement produces structural deliverables — not slides, not opinions. Each one is custom-built around the client's operational reality.</p>
+    
+    <div class="grid-4x2">
+      <div class="deliverable">
+        <div class="deliverable-icon"></div>
+        <h4>A Full Risk Map</h4>
+        <p>We identify the real blockers that kill 90% of new entries — quantified, prioritized, mapped against your sector and geography.</p>
+      </div>
+      <div class="deliverable">
+        <div class="deliverable-icon"></div>
+        <h4>Macro Roadmap</h4>
+        <p>Clear milestones so your team knows exactly what must be true before each investment phase.</p>
+      </div>
+      <div class="deliverable">
+        <div class="deliverable-icon"></div>
+        <h4>Budgeting Clarity</h4>
+        <p>Investment range projections broken down by department to avoid hidden cost surprises.</p>
+      </div>
+      <div class="deliverable">
+        <div class="deliverable-icon"></div>
+        <h4>Legal & Tax Framework</h4>
+        <p>A high-level structural guide with specific ownership for each regulatory task.</p>
+      </div>
+      <div class="deliverable">
+        <div class="deliverable-icon"></div>
+        <h4>Operational Architecture</h4>
+        <p>We define exactly who owns what between HQ and Brazil. No friction, no confusion.</p>
+      </div>
+      <div class="deliverable">
+        <div class="deliverable-icon"></div>
+        <h4>Stakeholder & Governance</h4>
+        <p>A complete decision matrix to maintain alignment without losing speed.</p>
+      </div>
+      <div class="deliverable">
+        <div class="deliverable-icon"></div>
+        <h4>Implementation Plan</h4>
+        <p>A granular timeline with milestones for the first 12 months of operation.</p>
+      </div>
+      <div class="deliverable">
+        <div class="deliverable-icon"></div>
+        <h4>Ecosystem Access</h4>
+        <p>Curated introductions to pre-vetted local partners across all critical disciplines.</p>
+      </div>
+    </div>
+    
+    <p class="deliverables-footer">Not theory. A decision-grade plan that leadership can approve and execute.</p>
+  </div>
+</section>
+
+<!-- ═══ ENGAGEMENT TIERS ═══ -->
+<section class="reveal" id="tiers">
+  <div class="container">
+    <div class="section-eyebrow">Engagements</div>
+    <h2>Three engagement tiers. <em>Each one custom-scoped.</em></h2>
+    <p class="lead">The Protocol is modular. You enter at the phase that matches your stage — and scale up as your operation requires. Final scope and investment are defined after the diagnostic phase, in writing, before any work begins.</p>
+    
+    <div class="tiers">
+      <div class="tier">
+        <div class="tier-tag">Phase 01</div>
+        <div class="tier-name">Blueprint Essentials</div>
+        <div class="tier-phase">Diagnose</div>
+        <div class="tier-for">For companies in early-stage exploration of the Brazilian market.</div>
+        <ul class="tier-list">
+          <li>Strategic diagnostic of your entry thesis</li>
+          <li>Risk Framework Report (5 dimensions, 4 decision gates)</li>
+          <li>Initial market intelligence customized to your sector</li>
+          <li>Strategic roadmap with prioritized next steps</li>
+        </ul>
+        <div class="tier-meta">
+          <div class="tier-meta-row">
+            <span class="tier-meta-label">Investment</span>
+            <span class="tier-meta-value">Custom-scoped</span>
+          </div>
+          <div class="tier-meta-row">
+            <span class="tier-meta-label">Timeline</span>
+            <span class="tier-meta-value">3–4 weeks</span>
+          </div>
+        </div>
+        <a href="#" class="tier-cta" onclick="openModal(); return false;">Schedule Conversation</a>
+      </div>
+      
+      <div class="tier">
+        <div class="tier-tag">Phase 01 + 02</div>
+        <div class="tier-name">Blueprint Executive</div>
+        <div class="tier-phase">Diagnose & Architect</div>
+        <div class="tier-for">For companies committed to entry, ready to build the full architecture before launch.</div>
+        <ul class="tier-list">
+          <li>Everything in Essentials</li>
+          <li>Complete operational architecture design</li>
+          <li>Entity, tax & compliance structure validated by local specialists</li>
+          <li>Distribution and partnership strategy</li>
+          <li>Cultural intelligence brief for executive leadership</li>
+          <li>Implementation roadmap with milestones</li>
+          <li>Access to the DBerg Ecosystem</li>
+        </ul>
+        <div class="tier-meta">
+          <div class="tier-meta-row">
+            <span class="tier-meta-label">Investment</span>
+            <span class="tier-meta-value">Custom-scoped</span>
+          </div>
+          <div class="tier-meta-row">
+            <span class="tier-meta-label">Timeline</span>
+            <span class="tier-meta-value">6–8 weeks</span>
+          </div>
+        </div>
+        <a href="#" class="tier-cta" onclick="openModal(); return false;">Schedule Conversation</a>
+      </div>
+      
+      <div class="tier">
+        <div class="tier-tag">Phase 01 + 02 + 03</div>
+        <div class="tier-name">Go To Market</div>
+        <div class="tier-phase">Done For You — Full Implementation</div>
+        <div class="tier-for">For companies that want Digital Berg to lead full implementation, not just strategy.</div>
+        <ul class="tier-list">
+          <li>End-to-end implementation of the architecture</li>
+          <li>DBerg Ecosystem deployment across all critical disciplines</li>
+          <li>Local team setup, partner integration, governance activation</li>
+          <li>Active management until operation is self-sustaining</li>
+          <li>Executive reporting tied to predefined success metrics</li>
+        </ul>
+        <div class="tier-meta">
+          <div class="tier-meta-row">
+            <span class="tier-meta-label">Investment</span>
+            <span class="tier-meta-value">Custom-scoped</span>
+          </div>
+          <div class="tier-meta-row">
+            <span class="tier-meta-label">Timeline</span>
+            <span class="tier-meta-value">4–9 months</span>
+          </div>
+        </div>
+        <a href="#" class="tier-cta" onclick="openModal(); return false;">Schedule Conversation</a>
+      </div>
+    </div>
+    
+    <div class="run-banner">
+      <div class="run-banner-left">
+        <h4>Run — Phase 04 — Ongoing Stewardship</h4>
+        <p>Architectural oversight as the operation matures. Available to clients post-implementation.</p>
+      </div>
+      <div class="run-banner-right">By engagement</div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ ECOSYSTEM ═══ -->
+<section class="ecosystem reveal">
+  <div class="container">
+    <div class="section-eyebrow" style="justify-content: center;">The Network</div>
+    <h2>The DBerg <em>Ecosystem.</em></h2>
+    <p class="body">Every operation we build connects into a curated network of pre-vetted partners across the disciplines that matter: legal, accounting, logistics, banking, technology, recruitment, compliance, and local marketing.</p>
+    <p class="body" style="margin-top: 20px;">Every partner is selected, tested, and renegotiated by us — because the operation is only as strong as the network around it.</p>
+    <p class="ecosystem-note">Embedded in Blueprint Executive and Go To Market engagements — and available as a standalone engagement.</p>
+    <div class="ecosystem-cta-wrap">
+      <a href="#" class="btn-ecosystem" onclick="openModal('ecosystem'); return false;">Engage the Ecosystem only</a>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ ADVISORY ═══ -->
+<section class="advisory reveal">
+  <div class="container">
+    <div class="section-eyebrow" style="justify-content: center;">Selective Engagement</div>
+    <h3>Cultural Intelligence Advisory</h3>
+    <p>A discreet, board-level engagement for executives leading or evaluating Brazilian operations from abroad. Not a workshop. Not a training. A direct line to the cultural and behavioral intelligence that shapes how decisions are made, deals close, and teams perform — interpreted by someone operating inside the system, not observing it.</p>
+    <p>Engagement is selective. Available by introduction or direct inquiry.</p>
+    <a href="#" class="btn-primary advisory-cta" onclick="openModal(); return false;">Request a Confidential Conversation</a>
+  </div>
+</section>
+
+<!-- ═══ WHO ═══ -->
+<section class="reveal" style="background: var(--black);">
+  <div class="container">
+    <div class="section-eyebrow">Right Fit</div>
+    <h2>Who this <em>is for.</em></h2>
+    <ul class="who-list">
+      <li>Foreign companies planning to enter Brazil — B2B, services, tech, regulated industries</li>
+      <li>Founders and CEOs entering Brazil with capital and conviction</li>
+      <li>Heads of international expansion managing high-stakes timelines</li>
+      <li>Private equity and investors with portfolio companies operating in or entering Brazil</li>
+      <li>Companies already on the ground that need to redesign before scaling</li>
+      <li>Leaders who need clarity before committing budget, team, or vendors</li>
+    </ul>
+    <p class="who-disclaimer">Not for "exploratory" projects, teams seeking shortcuts, or companies that view structural complexity as something to bypass.</p>
+  </div>
+</section>
+
+<!-- ═══ FOUNDER ═══ -->
+<section class="founder reveal">
+  <div class="container">
+    <div class="founder-narrow">
+      <div class="section-eyebrow" style="justify-content: center;">The Founder</div>
+      <h2 style="margin-left: auto; margin-right: auto; text-align: center;">Built by someone who <em>operates between worlds.</em></h2>
+      <p class="body" style="margin-left: auto; margin-right: auto; text-align: center; max-width: 60ch; margin-top: 32px;">Digital Berg was founded by Denise Esteves — a Brazilian executive based in France with over a decade of operational experience across Brazil, Europe, and North America.</p>
+      <p class="body" style="margin-left: auto; margin-right: auto; text-align: center; max-width: 60ch; margin-top: 20px;">The Berg Architecture Protocol™ was developed from years of operating inside both systems, not observing from one side. Every engagement is led personally. Every architecture is designed where culture, regulation, and ambition actually meet.</p>
+      <div class="founder-quote-centered">
+        <span class="founder-quote-mark">―</span>
+        Brazil doesn't reward urgency.<br>It rewards readiness.
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ FAQ ═══ -->
+<section class="reveal">
+  <div class="container">
+    <div class="section-eyebrow">Frequently Asked</div>
+    <h2>Questions we get <em>before the engagement.</em></h2>
+    
+    <div class="faq-list">
+      <div class="faq-item" onclick="toggleFaq(this)">
+        <div class="faq-q">
+          <h4>Is this just a legal report?</h4>
+          <div class="faq-toggle">+</div>
+        </div>
+        <div class="faq-a">No. Legal structure is one of eight architectural dimensions we cover. The Protocol delivers a complete operational blueprint — strategy, structure, governance, ecosystem, and implementation logic — not a compliance document.</div>
+      </div>
+      
+      <div class="faq-item" onclick="toggleFaq(this)">
+        <div class="faq-q">
+          <h4>My company already has a lawyer and accountant in Brazil. Why do I need this?</h4>
+          <div class="faq-toggle">+</div>
+        </div>
+        <div class="faq-a">Lawyers structure entities. Accountants manage tax compliance. Neither designs the operating architecture between your HQ and your Brazilian operation — and that is where most international entries fail. The Protocol works alongside your existing legal and accounting partners, not in place of them.</div>
+      </div>
+      
+      <div class="faq-item" onclick="toggleFaq(this)">
+        <div class="faq-q">
+          <h4>How much of my executive team's time will this require?</h4>
+          <div class="faq-toggle">+</div>
+        </div>
+        <div class="faq-a">Phase 01 (Diagnose) requires roughly 6–10 hours of executive input over 3 weeks. Phase 02 (Architect) involves more cross-functional engagement, scoped against your operational maturity. Time investment is always defined in writing before engagement begins.</div>
+      </div>
+      
+      <div class="faq-item" onclick="toggleFaq(this)">
+        <div class="faq-q">
+          <h4>Can we start with Blueprint Executive directly?</h4>
+          <div class="faq-toggle">+</div>
+        </div>
+        <div class="faq-a">In specific cases, yes — when the company has already completed an initial diagnostic internally or with another partner. We assess this on a per-engagement basis during the introductory conversation.</div>
+      </div>
+      
+      <div class="faq-item" onclick="toggleFaq(this)">
+        <div class="faq-q">
+          <h4>What happens after the Blueprint is delivered?</h4>
+          <div class="faq-toggle">+</div>
+        </div>
+        <div class="faq-a">You decide. You can implement internally with the architecture as your guide, return to us for Phase 03 (Activate), or engage Run for ongoing oversight. There is no obligation to continue beyond the phase you contracted.</div>
+      </div>
+      
+      <div class="faq-item" onclick="toggleFaq(this)">
+        <div class="faq-q">
+          <h4>How is Digital Berg different from a traditional consulting firm?</h4>
+          <div class="faq-toggle">+</div>
+        </div>
+        <div class="faq-a">Traditional consulting delivers reports. Digital Berg delivers operational architecture through the Berg Architecture Protocol™ — a method developed and applied personally by someone who has built and operated inside Brazilian and European markets.</div>
+      </div>
+      
+      <div class="faq-item" onclick="toggleFaq(this)">
+        <div class="faq-q">
+          <h4>Do you operate in Portuguese, English, and French?</h4>
+          <div class="faq-toggle">+</div>
+        </div>
+        <div class="faq-a">Yes. All engagements are conducted trilingually as needed. Written deliverables are produced in the working language of the client.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ FINAL CTA ═══ -->
+<section class="final-cta reveal">
+  <div class="container">
+    <div class="section-eyebrow" style="justify-content: center;">Begin</div>
+    <h2>Ready to build <em>before you launch?</em></h2>
+    <p class="body">The cost of structural mistakes in Brazil compounds quietly — until it doesn't. The companies that arrive with architecture spend less, move faster, and operate with margins the unprepared never see.</p>
+    <a href="#" class="btn-primary" onclick="openModal(); return false;">Schedule a Strategic Conversation</a>
+  </div>
+</section>
+
+<!-- ═══ FOOTER ═══ -->
+<footer>
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <h4>D<span>BERG</span></h4>
+        <p>Architecture-led market entry into Brazil. Strategic intelligence, operational design, and ecosystem activation for international companies entering or scaling in the Brazilian market.</p>
+      </div>
+      <div class="footer-col">
+        <h5>Locations</h5>
+        <p>6 Rue d'Armaillé<br>75017 Paris, France</p>
+        <p style="margin-top: 16px;">Digital Berg Brasil<br><span style="color: var(--champagne-dim);">Opening June 2026</span></p>
+      </div>
+      <div class="footer-col">
+        <h5>Connect</h5>
+        <a href="mailto:contact@digital-berg.com">contact@digital-berg.com</a>
+        <a href="#">LinkedIn</a>
+        <a href="https://www.digital-berg.com">www.digital-berg.com</a>
+      </div>
+      <div class="footer-col">
+        <h5>Languages</h5>
+        <p>Português</p>
+        <p>English</p>
+        <p>Français</p>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2026 Digital Berg. All rights reserved.</p>
+      <p class="footer-tagline">Architecture First. Acceleration Second.</p>
+    </div>
+    <p style="font-family: var(--mono); font-size: 10px; color: var(--grey-dim); margin-top: 24px; text-align: center; letter-spacing: 0.1em;">The Berg Architecture Protocol™ is a proprietary method of Digital Berg.</p>
+  </div>
+</footer>
+
+<!-- ═══ MODAL ═══ -->
+<div class="modal-overlay" id="modal" onclick="if(event.target===this) closeModal()">
+  <div class="modal">
+    <button class="modal-close" onclick="closeModal()">×</button>
+    
+    <div id="form-content">
+      <h3 id="modal-title">Strategic Conversation</h3>
+      <p class="modal-subtitle" id="modal-subtitle">A confidential introductory call to assess fit, scope, and timeline. Reviewed personally before scheduling.</p>
+      
+      <form onsubmit="submitForm(event)">
+        <div class="form-group">
+          <label class="form-label">Full Name</label>
+          <input type="text" class="form-input" required>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Company</label>
+          <input type="text" class="form-input" required>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Role</label>
+          <input type="text" class="form-input" required>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Email</label>
+          <input type="email" class="form-input" required>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Country of Headquarters</label>
+          <input type="text" class="form-input" required>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Preferred Language</label>
+          <select class="form-select" required>
+            <option value="">Select</option>
+            <option>English</option>
+            <option>Português</option>
+            <option>Français</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Brief Context</label>
+          <textarea class="form-textarea" rows="3" required placeholder="A few lines on your current situation and what you'd like to discuss"></textarea>
+        </div>
+        <button type="submit" class="form-submit">Send Inquiry</button>
+      </form>
+    </div>
+    
+    <div id="form-success" class="form-success">
+      <h3>Inquiry received.</h3>
+      <p>Thank you. Your message has been received and will be reviewed personally. You'll receive a response within two business days.</p>
+    </div>
+  </div>
+</div>
+
+<script>
+  // Nav scroll behavior
+  const nav = document.getElementById('nav');
+  window.addEventListener('scroll', () => {
+    if (window.scrollY > 40) nav.classList.add('scrolled');
+    else nav.classList.remove('scrolled');
+  });
+  
+  // Reveal on scroll
+  const observerOptions = { threshold: 0.1, rootMargin: '0px 0px -80px 0px' };
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+        observer.unobserve(entry.target);
+      }
+    });
+  }, observerOptions);
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+  
+  // FAQ toggle
+  function toggleFaq(item) {
+    const wasOpen = item.classList.contains('open');
+    document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open'));
+    if (!wasOpen) item.classList.add('open');
+    document.querySelectorAll('.faq-toggle').forEach(t => {
+      t.textContent = t.parentElement.parentElement.classList.contains('open') ? '−' : '+';
+    });
+  }
+  
+  // Modal
+  function openModal(context) {
+    const title = document.getElementById('modal-title');
+    const subtitle = document.getElementById('modal-subtitle');
+    
+    if (context === 'ecosystem') {
+      title.textContent = 'Engage the Ecosystem';
+      subtitle.textContent = 'A confidential conversation to understand your needs and connect you with the right partners from the DBerg Network.';
+    } else {
+      title.textContent = 'Strategic Conversation';
+      subtitle.textContent = 'A confidential introductory call to assess fit, scope, and timeline. Reviewed personally before scheduling.';
+    }
+    
+    document.getElementById('modal').classList.add('active');
+    document.body.style.overflow = 'hidden';
+  }
+  function closeModal() {
+    document.getElementById('modal').classList.remove('active');
+    document.body.style.overflow = '';
+    setTimeout(() => {
+      document.getElementById('form-content').style.display = 'block';
+      document.getElementById('form-success').classList.remove('active');
+    }, 400);
+  }
+  function submitForm(e) {
+    e.preventDefault();
+    // Connect this to HubSpot Forms API or Formspree later
+    document.getElementById('form-content').style.display = 'none';
+    document.getElementById('form-success').classList.add('active');
+  }
+  
+  // Esc to close modal
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') closeModal();
+  });
+</script>
+
+</body>
+</html>
