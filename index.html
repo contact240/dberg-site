@@ -126,7 +126,53 @@
   }
   
   .nav-logo span { color: var(--champagne); }
+    .nav-inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
   
+  .nav-links {
+    display: flex;
+    align-items: center;
+    gap: 36px;
+  }
+  
+  .nav-link {
+    font-family: var(--mono);
+    font-size: 11px;
+    font-weight: 400;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--bone-dim);
+    text-decoration: none;
+    transition: color 0.4s ease;
+    position: relative;
+  }
+  
+  .nav-link:hover {
+    color: var(--champagne);
+  }
+  
+  .nav-link-primary {
+    color: var(--champagne);
+    padding: 10px 20px;
+    border: 1px solid var(--line-bright);
+    transition: all 0.4s ease;
+  }
+  
+  .nav-link-primary:hover {
+    background: var(--champagne);
+    color: var(--black);
+    border-color: var(--champagne);
+  }
+  
+  @media (max-width: 900px) {
+    .nav-links {
+      display: none;
+    }
+  }
+
   /* ─── HERO ─── */
   .hero {
     padding: 130px var(--gutter) 100px;
@@ -1362,6 +1408,11 @@
 <nav id="nav">
   <div class="nav-inner">
     <a href="#top" class="nav-logo">D<span>BERG</span></a>
+    <div class="nav-links">
+      <a href="#protocol" class="nav-link">The Method</a>
+      <a href="#tiers" class="nav-link">Projects</a>
+      <a href="#" class="nav-link nav-link-primary" onclick="openModal(); return false;">Begin</a>
+    </div>
   </div>
 </nav>
 
