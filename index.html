@@ -33,6 +33,10 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,300;1,9..144,400&family=Manrope:wght@200;300;400;500;600;700&family=JetBrains+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+<!-- Calendly -->
+<link href="https://assets.calendly.com/assets/external/widget.css" rel="stylesheet">
+<script src="https://assets.calendly.com/assets/external/widget.js" async></script>
+
 <style>
   :root {
     --black: #141414;
@@ -1952,33 +1956,20 @@
   }
   
   // Modal
-  function openModal(context) {
-    const title = document.getElementById('modal-title');
-    const subtitle = document.getElementById('modal-subtitle');
-    const inquiryType = document.getElementById('inquiry-type');
-    
-    if (context === 'ecosystem') {
-      title.textContent = 'Hire the Ecosystem';
-      subtitle.textContent = 'A confidential conversation to understand your needs and connect you with the right partners from the DBerg Network.';
-      inquiryType.value = 'Ecosystem Project';
+   function openModal(context) {
+    if (typeof Calendly !== 'undefined') {
+      Calendly.initPopupWidget({ url: 'https://calendly.com/contact-digital-berg/30min' });
     } else {
-      title.textContent = 'Strategic Conversation';
-      subtitle.textContent = 'A confidential introductory call to assess fit, scope, and timeline. Reviewed personally before scheduling.';
-      inquiryType.value = 'Strategic Conversation';
+      window.open('https://calendly.com/contact-digital-berg/30min', '_blank');
     }
-    
-    document.getElementById('modal').classList.add('active');
-    document.body.style.overflow = 'hidden';
+    return false;
   }
-  function closeModal() {
-    document.getElementById('modal').classList.remove('active');
-    document.body.style.overflow = '';
-    setTimeout(() => {
-      document.getElementById('form-content').style.display = 'block';
-      document.getElementById('form-success').classList.remove('active');
-      document.getElementById('contact-form').reset();
-    }, 400);
+
+    function closeModal() {
+    const modal = document.getElementById('modal');
+    if (modal) { modal.classList.remove('active'); document.body.style.overflow = ''; }
   }
+
   async function submitForm(e) {
     e.preventDefault();
     const form = document.getElementById('contact-form');
