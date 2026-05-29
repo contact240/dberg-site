@@ -1956,11 +1956,13 @@
   }
   
   // Modal
-   function openModal(context) {
-    if (typeof Calendly !== 'undefined') {
-      Calendly.initPopupWidget({ url: 'https://calendly.com/contact-digital-berg/30min' });
+     function openModal(context) {
+    var calendlyUrl = 'https://calendly.com/contact-digital-berg/30min';
+    var isMobile = window.innerWidth < 768 || /Mobi|Android|iPhone|iPad/i.test(navigator.userAgent);
+    if (isMobile || typeof Calendly === 'undefined') {
+      window.open(calendlyUrl, '_blank');
     } else {
-      window.open('https://calendly.com/contact-digital-berg/30min', '_blank');
+      Calendly.initPopupWidget({ url: calendlyUrl });
     }
     return false;
   }
