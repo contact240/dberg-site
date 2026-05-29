@@ -1573,13 +1573,24 @@
         <div class="nav-links">
       <a href="#protocol" class="nav-link">The Method</a>
       <a href="#tiers" class="nav-link">Projects</a>
-      <a href="#" class="nav-link nav-link-primary" onclick="openModal(); return false;">Begin</a>
+            <a href="#" class="nav-link nav-link-primary" onclick="openModal(); return false;">Begin</a>
     </div>
     <button class="nav-toggle" onclick="toggleMenu()" aria-label="Menu">
       <span></span><span></span>
     </button>
   </div>
 </nav>
+
+<!-- ═══ MOBILE MENU ═══ -->
+<div class="mobile-menu" id="mobile-menu">
+  <button class="mobile-menu-close" onclick="toggleMenu()" aria-label="Close">&times;</button>
+  <nav class="mobile-menu-links">
+    <a href="#protocol" onclick="toggleMenu()">The Method</a>
+    <a href="#tiers" onclick="toggleMenu()">Projects</a>
+    <a href="#" onclick="toggleMenu(); openModal(); return false;">Begin</a>
+  </nav>
+  <div class="mobile-menu-footer">Architecture First. Acceleration Second.</div>
+</div>
 
 <!-- ═══ MOBILE MENU ═══ -->
 <div class="mobile-menu" id="mobile-menu">
