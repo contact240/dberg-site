@@ -193,10 +193,105 @@
     border-color: var(--champagne);
   }
   
-  @media (max-width: 900px) {
+    @media (max-width: 900px) {
     .nav-links {
       display: none;
     }
+    .nav-toggle {
+      display: flex;
+    }
+  }
+
+  /* ─── MOBILE MENU TOGGLE BUTTON ─── */
+  .nav-toggle {
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    gap: 5px;
+    width: 32px;
+    height: 32px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    z-index: 200;
+  }
+
+  .nav-toggle span {
+    display: block;
+    width: 24px;
+    height: 1px;
+    background: var(--champagne);
+    transition: all 0.3s ease;
+  }
+
+  /* ─── MOBILE MENU OVERLAY ─── */
+  .mobile-menu {
+    position: fixed;
+    inset: 0;
+    z-index: 150;
+    background: var(--black);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    padding: 0 var(--gutter);
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-12px);
+    transition: opacity 0.4s ease, transform 0.4s ease, visibility 0.4s;
+  }
+
+  .mobile-menu.active {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+  }
+
+  .mobile-menu-close {
+    position: absolute;
+    top: 28px;
+    right: var(--gutter);
+    background: none;
+    border: none;
+    color: var(--champagne);
+    font-size: 36px;
+    font-weight: 300;
+    cursor: pointer;
+    line-height: 1;
+  }
+
+  .mobile-menu-links {
+    display: flex;
+    flex-direction: column;
+    gap: 28px;
+  }
+
+  .mobile-menu-links a {
+    font-family: var(--display);
+    font-size: clamp(38px, 11vw, 56px);
+    font-weight: 300;
+    color: var(--bone);
+    text-decoration: none;
+    letter-spacing: -0.02em;
+    font-variation-settings: "opsz" 144, "SOFT" 40;
+    transition: color 0.3s ease;
+  }
+
+  .mobile-menu-links a:active,
+  .mobile-menu-links a:hover {
+    color: var(--champagne);
+  }
+
+  .mobile-menu-footer {
+    position: absolute;
+    bottom: 48px;
+    left: var(--gutter);
+    font-family: var(--mono);
+    font-size: 10.5px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--champagne-dim);
   }
 
   /* ─── HERO ─── */
@@ -1475,13 +1570,27 @@
 <nav id="nav">
   <div class="nav-inner">
     <a href="#top" class="nav-logo">D<span>BERG</span></a>
-    <div class="nav-links">
+        <div class="nav-links">
       <a href="#protocol" class="nav-link">The Method</a>
       <a href="#tiers" class="nav-link">Projects</a>
       <a href="#" class="nav-link nav-link-primary" onclick="openModal(); return false;">Begin</a>
     </div>
+    <button class="nav-toggle" onclick="toggleMenu()" aria-label="Menu">
+      <span></span><span></span>
+    </button>
   </div>
 </nav>
+
+<!-- ═══ MOBILE MENU ═══ -->
+<div class="mobile-menu" id="mobile-menu">
+  <button class="mobile-menu-close" onclick="toggleMenu()" aria-label="Close">&times;</button>
+  <nav class="mobile-menu-links">
+    <a href="#protocol" onclick="toggleMenu()">The Method</a>
+    <a href="#tiers" onclick="toggleMenu()">Projects</a>
+    <a href="#" onclick="toggleMenu(); openModal(); return false;">Begin</a>
+  </nav>
+  <div class="mobile-menu-footer">Architecture First. Acceleration Second.</div>
+</div>
 
 <!-- ═══ HERO ═══ -->
 <section class="hero" id="top">
@@ -1926,6 +2035,12 @@
 </div>
 
 <script>
+    // Mobile menu toggle
+  function toggleMenu() {
+    var menu = document.getElementById('mobile-menu');
+    menu.classList.toggle('active');
+    document.body.style.overflow = menu.classList.contains('active') ? 'hidden' : '';
+  }
   // Nav scroll behavior
   const nav = document.getElementById('nav');
   window.addEventListener('scroll', () => {
