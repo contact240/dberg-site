@@ -595,6 +595,47 @@
     }
   }
 </script>
+<script>
+  // Força estilo nos inputs do HubSpot após carregamento
+  function styleHsForm() {
+    const inputs = document.querySelectorAll('#form-area input.hs-input');
+    const btn = document.querySelector('#form-area .hs-button');
+    inputs.forEach(input => {
+      input.style.cssText = `
+        background: transparent !important;
+        border: none !important;
+        border-bottom: 1px solid rgba(196,184,150,0.4) !important;
+        border-radius: 0 !important;
+        padding: 10px 0 !important;
+        color: #141414 !important;
+        font-size: 15px !important;
+        font-weight: 300 !important;
+        box-shadow: none !important;
+        width: 100% !important;
+      `;
+    });
+    if (btn) {
+      btn.style.cssText = `
+        background: #141414 !important;
+        color: #ebe6dc !important;
+        border: none !important;
+        border-radius: 0 !important;
+        width: 100% !important;
+        padding: 16px !important;
+        font-size: 11.5px !important;
+        font-weight: 500 !important;
+        letter-spacing: 0.18em !important;
+        text-transform: uppercase !important;
+        cursor: pointer !important;
+        box-shadow: none !important;
+      `;
+    }
+  }
+  // Tenta várias vezes pois o HubSpot carrega de forma assíncrona
+  setTimeout(styleHsForm, 500);
+  setTimeout(styleHsForm, 1000);
+  setTimeout(styleHsForm, 2000);
+</script>
 
 </body>
 </html>
