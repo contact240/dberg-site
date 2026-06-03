@@ -1,0 +1,518 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>The Brazil Readiness Framework™ — Digital Berg</title>
+  <meta name="description" content="47-point entry audit for global companies before deploying capital in Brazil. Free. Immediate. Built by Digital Berg.">
+  <link rel="icon" href="/favicon.png">
+
+  <!-- Mesmas fontes do site principal — ajusta se necessário -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+  <style>
+    :root {
+      --champagne: #c4b896;
+      --champagne-bright: #d8cfb0;
+      --champagne-dim: #8c8267;
+      --bg: #0e0e0e;
+      --bg2: #141414;
+      --border: #1e1e1e;
+      --text: #f5f0e8;
+      --muted: #666;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: inherit;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 999;
+      padding: 20px 40px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: linear-gradient(to bottom, #0e0e0e 60%, transparent);
+    }
+    .nav-logo {
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 3px;
+      color: var(--text);
+      text-decoration: none;
+      text-transform: uppercase;
+    }
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 28px;
+      list-style: none;
+    }
+    .nav-links a {
+      font-size: 10px;
+      letter-spacing: 2px;
+      color: var(--muted);
+      text-decoration: none;
+      text-transform: uppercase;
+      transition: color 0.2s;
+    }
+    .nav-links a:hover { color: var(--text); }
+    .nav-links a.active { color: var(--champagne); }
+    .nav-cta {
+      font-size: 10px;
+      letter-spacing: 2px;
+      color: var(--bg);
+      background: var(--text);
+      text-decoration: none;
+      text-transform: uppercase;
+      padding: 8px 18px;
+      font-weight: 700;
+      transition: background 0.2s;
+    }
+    .nav-cta:hover { background: var(--champagne-bright); }
+
+    /* ── HERO ── */
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      padding: 0 40px 80px;
+      position: relative;
+      overflow: hidden;
+    }
+    .hero-bg-line {
+      position: absolute;
+      top: 0; bottom: 0; left: 40px;
+      width: 1px;
+      background: linear-gradient(to bottom, transparent, var(--champagne-dim) 30%, var(--champagne-dim) 70%, transparent);
+      opacity: 0.2;
+    }
+    .hero-eyebrow {
+      font-size: 9px;
+      letter-spacing: 3px;
+      color: var(--champagne);
+      text-transform: uppercase;
+      margin-bottom: 24px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .hero-eyebrow::before {
+      content: '';
+      display: block;
+      width: 24px;
+      height: 1px;
+      background: var(--champagne);
+    }
+    .hero h1 {
+      font-size: clamp(40px, 7vw, 88px);
+      font-weight: 700;
+      line-height: 1.0;
+      letter-spacing: -1px;
+      max-width: 900px;
+      margin-bottom: 32px;
+    }
+    .hero h1 em {
+      font-weight: 400;
+      color: var(--champagne);
+      font-style: italic;
+    }
+    .hero-sub {
+      font-size: clamp(14px, 1.5vw, 17px);
+      color: var(--muted);
+      line-height: 1.7;
+      max-width: 520px;
+      margin-bottom: 48px;
+    }
+    .hero-meta {
+      display: flex;
+      gap: 32px;
+      align-items: center;
+    }
+    .hero-stat { text-align: left; }
+    .hero-stat-num {
+      font-size: 32px;
+      font-weight: 700;
+      color: var(--champagne);
+      line-height: 1;
+    }
+    .hero-stat-label {
+      font-size: 9px;
+      color: #333;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      margin-top: 4px;
+    }
+    .hero-divider {
+      width: 1px;
+      height: 40px;
+      background: #222;
+    }
+
+    /* ── CONTENT ── */
+    .content {
+      max-width: 680px;
+      margin: 0 auto;
+      padding: 100px 40px;
+    }
+
+    /* Pillars */
+    .pillars-label {
+      font-size: 9px;
+      color: var(--champagne-dim);
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      margin-bottom: 4px;
+    }
+    .pillar-row {
+      display: flex;
+      align-items: baseline;
+      gap: 16px;
+      padding: 20px 0;
+      border-bottom: 1px solid var(--border);
+    }
+    .pillar-row:first-of-type { border-top: 1px solid var(--border); }
+    .pillar-num {
+      font-size: 10px;
+      letter-spacing: 2px;
+      color: var(--champagne);
+      font-family: monospace;
+      min-width: 28px;
+    }
+    .pillar-name { font-size: 14px; color: #555; flex: 1; }
+    .pillar-pts { font-size: 11px; color: #333; letter-spacing: 1px; }
+
+    /* Section divider */
+    .section-divider {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      margin: 72px 0 48px;
+    }
+    .section-divider-line { flex: 1; height: 1px; background: var(--border); }
+    .section-divider-label {
+      font-size: 9px;
+      color: var(--champagne-dim);
+      letter-spacing: 3px;
+      text-transform: uppercase;
+    }
+
+    /* Preview card */
+    .preview-card {
+      border-left: 2px solid var(--champagne);
+      padding: 28px 28px 28px 24px;
+      background: var(--bg2);
+      margin-bottom: 48px;
+      position: relative;
+      overflow: hidden;
+    }
+    .preview-card::after {
+      content: '';
+      position: absolute;
+      bottom: -30px; right: -30px;
+      width: 120px; height: 120px;
+      background: linear-gradient(135deg, transparent 50%, #1a1a1a 50%);
+    }
+
+    /* Form */
+    .form-label {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 24px;
+    }
+    .form-label::before {
+      content: '';
+      display: block;
+      width: 24px;
+      height: 1px;
+      background: var(--champagne);
+    }
+    .form-label span {
+      font-size: 9px;
+      color: var(--champagne);
+      letter-spacing: 3px;
+      text-transform: uppercase;
+    }
+
+    /* HubSpot overrides */
+    #hs-framework-form .hs-form-field label {
+      color: #555 !important;
+      font-size: 10px !important;
+      letter-spacing: 1.5px !important;
+      text-transform: uppercase !important;
+    }
+    #hs-framework-form .hs-form input[type="text"],
+    #hs-framework-form .hs-form input[type="email"] {
+      background: var(--bg) !important;
+      border: 1px solid #2a2a2a !important;
+      color: var(--text) !important;
+      font-size: 13px !important;
+      padding: 12px 16px !important;
+      border-radius: 0 !important;
+      width: 100% !important;
+    }
+    #hs-framework-form .hs-form input:focus {
+      border-color: var(--champagne) !important;
+      outline: none !important;
+    }
+    #hs-framework-form .hs-form input[type="submit"],
+    #hs-framework-form .hs-button {
+      background: var(--champagne) !important;
+      color: #0e0e0e !important;
+      border: none !important;
+      font-weight: 700 !important;
+      font-size: 10px !important;
+      letter-spacing: 3px !important;
+      text-transform: uppercase !important;
+      padding: 16px 24px !important;
+      width: 100% !important;
+      cursor: pointer !important;
+      border-radius: 0 !important;
+      margin-top: 8px !important;
+    }
+    #hs-framework-form .hs-form input[type="submit"]:hover,
+    #hs-framework-form .hs-button:hover {
+      background: var(--champagne-bright) !important;
+    }
+    #hs-framework-form .submitted-message {
+      color: var(--champagne) !important;
+      font-size: 14px !important;
+      text-align: center !important;
+      padding: 32px 0 !important;
+      letter-spacing: 1px !important;
+    }
+
+    /* Footer */
+    .page-footer {
+      padding: 48px 40px;
+      border-top: 1px solid var(--border);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      max-width: 100%;
+    }
+    .page-footer p {
+      font-size: 11px;
+      color: #333;
+      letter-spacing: 1px;
+    }
+    .page-footer a {
+      font-size: 11px;
+      color: var(--champagne-dim);
+      text-decoration: none;
+      letter-spacing: 1px;
+    }
+    .page-footer a:hover { color: var(--champagne); }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      nav { padding: 16px 24px; }
+      .nav-links { display: none; }
+      .hero { padding: 0 24px 64px; }
+      .content { padding: 80px 24px; }
+      .hero-meta { gap: 20px; }
+      .page-footer { flex-direction: column; gap: 16px; text-align: center; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav>
+    <a href="/" class="nav-logo">DBerg</a>
+    <ul class="nav-links">
+      <li><a href="/#protocol">The Method</a></li>
+      <li><a href="/#tiers">Projects</a></li>
+      <li><a href="/framework.html" class="active">Framework</a></li>
+    </ul>
+    <a href="/#begin" class="nav-cta">Begin →</a>
+  </nav>
+
+
+  <!-- HERO -->
+  <div class="hero">
+    <div class="hero-bg-line"></div>
+
+    <div class="hero-eyebrow">Free Resource — 2026 Edition</div>
+
+    <h1>
+      The Brazil<br>
+      Readiness<br>
+      <em>Framework™</em>
+    </h1>
+
+    <p class="hero-sub">
+      47 structural checkpoints across five pillars.
+      One diagnostic read of where your entry thesis is exposed —
+      before the capital moves.
+    </p>
+
+    <div class="hero-meta">
+      <div class="hero-stat">
+        <div class="hero-stat-num">47</div>
+        <div class="hero-stat-label">Checkpoints</div>
+      </div>
+      <div class="hero-divider"></div>
+      <div class="hero-stat">
+        <div class="hero-stat-num">5</div>
+        <div class="hero-stat-label">Pillars</div>
+      </div>
+      <div class="hero-divider"></div>
+      <div class="hero-stat">
+        <div class="hero-stat-num">'26</div>
+        <div class="hero-stat-label">Edition</div>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- CONTENT -->
+  <div class="content">
+
+    <!-- Intro -->
+    <p style="font-size: 17px; color: #555; line-height: 1.75; margin-bottom: 40px;">
+      Most companies that fail in Brazil don't fail from lack of capital.
+      They fail from invisible structural gaps — the kind that only surface
+      after the resources are already deployed.
+    </p>
+    <p style="font-size: 17px; color: #333; line-height: 1.75; margin-bottom: 0;">
+      This framework was built to surface them first.
+    </p>
+
+
+    <!-- Pillars -->
+    <div class="section-divider">
+      <div class="section-divider-line"></div>
+      <span class="section-divider-label">Five structural pillars</span>
+      <div class="section-divider-line"></div>
+    </div>
+
+    <div class="pillars-label" style="margin-bottom: 4px;">What the audit covers</div>
+
+    <div class="pillar-row">
+      <span class="pillar-num">01</span>
+      <span class="pillar-name">Market Intelligence</span>
+      <span class="pillar-pts">9 checkpoints</span>
+    </div>
+    <div class="pillar-row">
+      <span class="pillar-num">02</span>
+      <span class="pillar-name">Operational Backbone</span>
+      <span class="pillar-pts">12 checkpoints</span>
+    </div>
+    <div class="pillar-row">
+      <span class="pillar-num">03</span>
+      <span class="pillar-name">Cultural &amp; Legal Adaptation</span>
+      <span class="pillar-pts">11 checkpoints</span>
+    </div>
+    <div class="pillar-row">
+      <span class="pillar-num">04</span>
+      <span class="pillar-name">Conversion Engine</span>
+      <span class="pillar-pts">8 checkpoints</span>
+    </div>
+    <div class="pillar-row">
+      <span class="pillar-num">05</span>
+      <span class="pillar-name">Strategic Ecosystem</span>
+      <span class="pillar-pts">7 checkpoints</span>
+    </div>
+
+
+    <!-- What you get -->
+    <div class="section-divider">
+      <div class="section-divider-line"></div>
+      <span class="section-divider-label">What you get</span>
+      <div class="section-divider-line"></div>
+    </div>
+
+    <div class="preview-card">
+      <p style="font-size: 9px; color: var(--champagne); letter-spacing: 3px; text-transform: uppercase; margin-bottom: 12px;">
+        Digital Berg — 2026 Edition
+      </p>
+      <p style="font-size: 18px; font-weight: 700; color: var(--text); line-height: 1.2; margin-bottom: 8px; letter-spacing: 0.3px;">
+        The Brazil Readiness Framework™
+      </p>
+      <p style="font-size: 12px; color: #444; margin-bottom: 24px; letter-spacing: 0.5px;">
+        47-Point Entry Audit — Before Deploying Capital in Brazil
+      </p>
+      <div style="display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 20px;">
+        <span style="font-size: 9px; color: var(--champagne); border: 1px solid #c4b89644; padding: 3px 10px; letter-spacing: 1px;">P 01</span>
+        <span style="font-size: 9px; color: #333; border: 1px solid #222; padding: 3px 10px; letter-spacing: 1px;">P 02</span>
+        <span style="font-size: 9px; color: #333; border: 1px solid #222; padding: 3px 10px; letter-spacing: 1px;">P 03</span>
+        <span style="font-size: 9px; color: #333; border: 1px solid #222; padding: 3px 10px; letter-spacing: 1px;">P 04</span>
+        <span style="font-size: 9px; color: #333; border: 1px solid #222; padding: 3px 10px; letter-spacing: 1px;">P 05</span>
+      </div>
+      <p style="font-size: 9px; color: #2e2e2e; letter-spacing: 2px; text-transform: uppercase;">
+        Developed by practitioners. Built for decision-makers.
+      </p>
+    </div>
+
+
+    <!-- Form -->
+    <div class="form-label">
+      <span>Get the Framework — Free</span>
+    </div>
+
+    <div id="hs-framework-form">
+      <!--
+      ════════════════════════════════════════════
+      SUBSTITUA ESTE PLACEHOLDER PELO EMBED:
+
+      <script charset="utf-8" type="text/javascript"
+        src="//js.hsforms.net/forms/embed/v2.js"></script>
+      <script>
+        hbspt.forms.create({
+          region: "eu1",
+          portalId: "SEU_PORTAL_ID",
+          formId: "SEU_FORM_ID"
+        });
+      </script>
+      ════════════════════════════════════════════
+      -->
+
+      <!-- PLACEHOLDER -->
+      <div style="
+        border: 1px solid #1e1e1e;
+        border-left: 2px solid var(--champagne-dim);
+        padding: 48px 24px;
+        text-align: center;
+      ">
+        <p style="color: #2a2a2a; font-size: 11px; margin-bottom: 10px; letter-spacing: 1px;">
+          ↑ Embed do formulário HubSpot aqui
+        </p>
+        <p style="color: var(--champagne-dim); font-size: 9px; letter-spacing: 2px; text-transform: uppercase;">
+          Full Name · Company · Email → Download
+        </p>
+      </div>
+    </div>
+
+    <!-- Footnote -->
+    <p style="
+      font-size: 11px; color: #2a2a2a;
+      line-height: 1.7; letter-spacing: 0.5px;
+      border-top: 1px solid #181818;
+      padding-top: 20px; margin-top: 24px;
+    ">
+      Reviewed annually. Used by executives entering Brazil from Europe, North America, and Southeast Asia.
+    </p>
+
+  </div>
+
+
+  <!-- FOOTER -->
+  <footer class="page-footer">
+    <p>© 2026 Digital Berg. All rights reserved.</p>
+    <a href="/">← Back to digital-berg.com</a>
+  </footer>
+
+</body>
+</html>
