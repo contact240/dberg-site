@@ -1563,6 +1563,96 @@
   .modal::-webkit-scrollbar-track { background: transparent; }
   .modal::-webkit-scrollbar-thumb { background: var(--champagne-dim); }
 </style>
+<!-- ============================================================
+     BLOCO 1 — Cola dentro do <head>, antes de </head>
+     ============================================================ -->
+<style>
+  :root {
+    --champagne: #c4b896;
+    --champagne-bright: #d8cfb0;
+    --champagne-dim: #8c8267;
+  }
+
+  #framework-topbar a { transition: color 0.2s; }
+  #framework-topbar a:hover { color: var(--champagne-bright) !important; }
+
+  #framework .pillar-row {
+    display: flex;
+    align-items: baseline;
+    gap: 16px;
+    padding: 18px 0;
+    border-bottom: 1px solid #1e1e1e;
+  }
+  #framework .pillar-row:first-child { border-top: 1px solid #1e1e1e; }
+  #framework .pillar-num { font-size: 10px; letter-spacing: 2px; color: var(--champagne); font-family: monospace; min-width: 28px; }
+  #framework .pillar-name { font-size: 13px; color: #555; flex: 1; letter-spacing: 0.5px; }
+  #framework .pillar-count { font-size: 11px; color: var(--champagne-dim); letter-spacing: 1px; }
+
+  #framework .stat-block { text-align: center; padding: 24px 0; }
+  #framework .stat-num { font-size: 48px; font-weight: 700; color: var(--champagne); line-height: 1; letter-spacing: -1px; margin: 0; }
+  #framework .stat-label { font-size: 9px; color: #666; letter-spacing: 2px; text-transform: uppercase; margin: 6px 0 0 0; }
+
+  #hs-framework-form-wrapper .hs-form input[type="text"],
+  #hs-framework-form-wrapper .hs-form input[type="email"] {
+    background: #0e0e0e !important;
+    border: 1px solid #2a2a2a !important;
+    color: #f5f0e8 !important;
+    font-size: 13px !important;
+    padding: 12px 16px !important;
+    border-radius: 0 !important;
+    width: 100% !important;
+  }
+  #hs-framework-form-wrapper .hs-form input:focus {
+    border-color: var(--champagne) !important;
+    outline: none !important;
+  }
+  #hs-framework-form-wrapper .hs-form label {
+    color: #555 !important;
+    font-size: 10px !important;
+    letter-spacing: 1.5px !important;
+    text-transform: uppercase !important;
+  }
+  #hs-framework-form-wrapper .hs-form input[type="submit"],
+  #hs-framework-form-wrapper .hs-button {
+    background: var(--champagne) !important;
+    color: #0e0e0e !important;
+    border: none !important;
+    font-weight: 700 !important;
+    font-size: 10px !important;
+    letter-spacing: 3px !important;
+    text-transform: uppercase !important;
+    padding: 16px 24px !important;
+    width: 100% !important;
+    cursor: pointer !important;
+    border-radius: 0 !important;
+    margin-top: 8px !important;
+    transition: background 0.2s !important;
+  }
+  #hs-framework-form-wrapper .hs-form input[type="submit"]:hover,
+  #hs-framework-form-wrapper .hs-button:hover {
+    background: var(--champagne-bright) !important;
+  }
+  #hs-framework-form-wrapper .submitted-message {
+    color: var(--champagne) !important;
+    font-size: 13px !important;
+    text-align: center !important;
+    padding: 24px 0 !important;
+    letter-spacing: 1px !important;
+  }
+  #hs-framework-form-wrapper .hs-error-msgs label {
+    color: #c0392b !important;
+    font-size: 11px !important;
+  }
+
+  @media (max-width: 768px) {
+    #framework { padding: 80px 24px !important; }
+    #framework-topbar { padding: 12px 20px !important; }
+  }
+</style>
+<!-- ============================================================
+     FIM BLOCO 1
+     ============================================================ -->
+  
 </head>
 <body>
 
@@ -1713,6 +1803,235 @@
     <p class="deliverables-footer">Not theory. A decision-grade plan that leadership can approve and execute.</p>
   </div>
 </section>
+<!-- ============================================================
+     BLOCO 2 — Cola antes de id="tiers" no <body>
+     ============================================================ -->
+
+
+<!-- TOPBAR FIXO — cola antes do <nav> existente -->
+<div id="framework-topbar" style="
+  position: fixed; top: 0; right: 0; z-index: 9999;
+  padding: 13px 36px;
+  display: flex; align-items: center; gap: 20px;
+  background: linear-gradient(to left, #0e0e0e 50%, transparent);
+  pointer-events: none;
+">
+  <a href="#framework" style="
+    font-size: 9px; letter-spacing: 2.5px;
+    color: var(--champagne); text-transform: uppercase;
+    text-decoration: none; pointer-events: all;
+    border-bottom: 1px solid transparent; padding-bottom: 1px;
+  ">Free Framework ↓</a>
+  <span style="color: #252525; font-size: 9px; pointer-events: none;">—</span>
+  <a href="https://www.digital-berg.com" target="_blank" rel="noopener" style="
+    font-size: 9px; letter-spacing: 2.5px;
+    color: #3a3a3a; text-transform: uppercase;
+    text-decoration: none; pointer-events: all;
+  ">digital-berg.com ↗</a>
+</div>
+
+
+<!-- FRAMEWORK SECTION -->
+<section id="framework" style="
+  background: #0e0e0e;
+  padding: 120px 40px;
+  position: relative;
+">
+
+  <!-- Linha topo champagne -->
+  <div style="
+    position: absolute; top: 0; left: 0; right: 0; height: 1px;
+    background: linear-gradient(to right, transparent, var(--champagne-dim) 40%, var(--champagne-dim) 60%, transparent);
+    opacity: 0.3;
+  "></div>
+
+  <div style="max-width: 680px; margin: 0 auto;">
+
+    <!-- LABEL -->
+    <div style="display: flex; align-items: center; gap: 16px; margin-bottom: 48px;">
+      <div style="width: 32px; height: 1px; background: var(--champagne);"></div>
+      <span style="font-size: 9px; letter-spacing: 3px; color: var(--champagne); text-transform: uppercase;">
+        Free Resource
+      </span>
+    </div>
+
+    <!-- HEADLINE -->
+    <h2 style="
+      font-size: clamp(32px, 5vw, 56px);
+      font-weight: 700;
+      color: #f5f0e8;
+      line-height: 1.05;
+      letter-spacing: -0.5px;
+      margin: 0 0 12px 0;
+    ">
+      47 questions.<br>
+      <span style="color: var(--champagne);">One verdict.</span>
+    </h2>
+
+    <p style="
+      font-size: clamp(14px, 2vw, 17px);
+      color: #666;
+      line-height: 1.7;
+      margin: 0 0 64px 0;
+      max-width: 520px;
+    ">
+      Most companies that fail in Brazil don't fail from lack of capital.
+      They fail from invisible structural gaps — the kind that only surface
+      after the resources are already deployed.
+      <br><br>
+      The Brazil Readiness Framework™ was built to surface them first.
+    </p>
+
+    <!-- STATS ROW -->
+    <div style="
+      display: grid;
+      grid-template-columns: 1fr 1px 1fr 1px 1fr;
+      margin-bottom: 64px;
+      border: 1px solid #1e1e1e;
+      border-left: 2px solid var(--champagne);
+    ">
+      <div class="stat-block">
+        <p class="stat-num">47</p>
+        <p class="stat-label">Checkpoints</p>
+      </div>
+      <div style="background: #1e1e1e;"></div>
+      <div class="stat-block">
+        <p class="stat-num">5</p>
+        <p class="stat-label">Pillars</p>
+      </div>
+      <div style="background: #1e1e1e;"></div>
+      <div class="stat-block">
+        <p class="stat-num">'26</p>
+        <p class="stat-label">Edition</p>
+      </div>
+    </div>
+
+    <!-- PILLARS LIST -->
+    <div style="margin-bottom: 72px;">
+      <p style="font-size: 9px; color: var(--champagne-dim); letter-spacing: 3px; text-transform: uppercase; margin: 0 0 4px 0;">
+        Five structural pillars
+      </p>
+      <div class="pillar-row">
+        <span class="pillar-num">01</span>
+        <span class="pillar-name">Market Intelligence</span>
+        <span class="pillar-count">9 pts</span>
+      </div>
+      <div class="pillar-row">
+        <span class="pillar-num">02</span>
+        <span class="pillar-name">Operational Backbone</span>
+        <span class="pillar-count">12 pts</span>
+      </div>
+      <div class="pillar-row">
+        <span class="pillar-num">03</span>
+        <span class="pillar-name">Cultural &amp; Legal Adaptation</span>
+        <span class="pillar-count">11 pts</span>
+      </div>
+      <div class="pillar-row">
+        <span class="pillar-num">04</span>
+        <span class="pillar-name">Conversion Engine</span>
+        <span class="pillar-count">8 pts</span>
+      </div>
+      <div class="pillar-row">
+        <span class="pillar-num">05</span>
+        <span class="pillar-name">Strategic Ecosystem</span>
+        <span class="pillar-count">7 pts</span>
+      </div>
+    </div>
+
+    <!-- DOCUMENTO PREVIEW -->
+    <div style="
+      border-left: 2px solid var(--champagne);
+      padding: 28px 28px 28px 24px;
+      background: #141414;
+      margin-bottom: 48px;
+      position: relative;
+      overflow: hidden;
+    ">
+      <div style="
+        position: absolute; bottom: -30px; right: -30px;
+        width: 120px; height: 120px;
+        background: linear-gradient(135deg, transparent 50%, #1a1a1a 50%);
+        pointer-events: none;
+      "></div>
+      <p style="font-size: 9px; color: var(--champagne); letter-spacing: 3px; text-transform: uppercase; margin: 0 0 12px 0;">
+        Digital Berg — 2026 Edition
+      </p>
+      <p style="font-size: 17px; font-weight: 700; color: #f5f0e8; margin: 0 0 6px 0; line-height: 1.2; letter-spacing: 0.3px;">
+        The Brazil Readiness Framework™
+      </p>
+      <p style="font-size: 12px; color: #444; margin: 0 0 20px 0; letter-spacing: 0.5px;">
+        47-Point Entry Audit — Before Deploying Capital in Brazil
+      </p>
+      <p style="font-size: 10px; color: #2e2e2e; margin: 0; letter-spacing: 2px; text-transform: uppercase;">
+        Developed by practitioners. Built for decision-makers.
+      </p>
+    </div>
+
+    <!-- FORMULÁRIO -->
+    <div id="hs-framework-form-wrapper" style="margin-bottom: 24px;">
+
+      <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 24px;">
+        <div style="width: 24px; height: 1px; background: var(--champagne);"></div>
+        <p style="font-size: 9px; color: var(--champagne); letter-spacing: 3px; text-transform: uppercase; margin: 0;">
+          Get the Framework — Free
+        </p>
+      </div>
+
+      <!--
+      ════════════════════════════════════════════
+      SUBSTITUA O PLACEHOLDER ABAIXO PELO EMBED:
+
+      <script charset="utf-8" type="text/javascript"
+        src="//js.hsforms.net/forms/embed/v2.js"></script>
+      <script>
+        hbspt.forms.create({
+          region: "eu1",
+          portalId: "SEU_PORTAL_ID",
+          formId: "SEU_FORM_ID"
+        });
+      </script>
+      ════════════════════════════════════════════
+      -->
+
+      <!-- PLACEHOLDER — remover ao embedar HubSpot -->
+      <div style="
+        border: 1px solid #1e1e1e;
+        border-left: 2px solid var(--champagne-dim);
+        padding: 40px 24px;
+        text-align: center;
+      ">
+        <p style="color: #2a2a2a; font-size: 11px; margin: 0 0 10px 0; letter-spacing: 1px;">
+          ↑ Embed do formulário HubSpot aqui
+        </p>
+        <p style="color: var(--champagne-dim); font-size: 9px; margin: 0; letter-spacing: 2px; text-transform: uppercase;">
+          Full Name · Company · Email
+        </p>
+      </div>
+
+    </div>
+
+    <!-- FOOTNOTE -->
+    <p style="
+      font-size: 11px; color: #2a2a2a;
+      line-height: 1.7; letter-spacing: 0.5px;
+      border-top: 1px solid #181818;
+      padding-top: 20px; margin: 0;
+    ">
+      Reviewed annually. Used by executives entering Brazil from Europe, North America, and Southeast Asia.
+    </p>
+
+  </div>
+
+  <!-- Linha fundo -->
+  <div style="
+    position: absolute; bottom: 0; left: 0; right: 0; height: 1px;
+    background: linear-gradient(to right, transparent, #1e1e1e 30%, #1e1e1e 70%, transparent);
+  "></div>
+
+</section>
+<!-- ============================================================
+     FIM BLOCO 2
+     ============================================================ -->
 
 <!-- ═══ PROJECT TIERS ═══ -->
 <section class="reveal" id="tiers">
