@@ -321,6 +321,64 @@
   @keyframes fadeUp{from{opacity:0;transform:translateY(30px);}to{opacity:1;transform:translateY(0);}}
   .reveal{opacity:0;transform:translateY(40px);transition:all 1.2s cubic-bezier(0.16,1,0.3,1);}
   .reveal.visible{opacity:1;transform:translateY(0);}
+  /* ── HUBSPOT FORM — estilo LP ── */
+.hs-form-field { margin-bottom: 28px; }
+.hs-form-field > label {
+  display: block;
+  font-family: var(--mono) !important;
+  font-size: 10px !important;
+  font-weight: 400 !important;
+  letter-spacing: 0.2em !important;
+  text-transform: uppercase !important;
+  color: var(--champagne-dim) !important;
+  margin-bottom: 10px !important;
+}
+.hs-input {
+  width: 100% !important;
+  background: transparent !important;
+  border: none !important;
+  border-bottom: 1px solid rgba(196,184,150,0.35) !important;
+  border-radius: 0 !important;
+  padding: 10px 0 !important;
+  color: var(--ink) !important;
+  font-family: var(--sans) !important;
+  font-size: 15px !important;
+  font-weight: 300 !important;
+  transition: border-color 0.3s ease !important;
+}
+.hs-input:focus { outline: none !important; border-color: var(--champagne-dim) !important; }
+.hs-input::placeholder { color: rgba(74,74,74,0.4) !important; }
+.hs-button {
+  width: 100% !important;
+  margin-top: 16px !important;
+  padding: 16px !important;
+  background: var(--ink) !important;
+  color: var(--bone) !important;
+  border: none !important;
+  border-radius: 0 !important;
+  font-family: var(--sans) !important;
+  font-size: 11.5px !important;
+  font-weight: 500 !important;
+  letter-spacing: 0.18em !important;
+  text-transform: uppercase !important;
+  cursor: pointer !important;
+  transition: background 0.3s ease !important;
+}
+.hs-button:hover { background: var(--ink-soft) !important; }
+.hs-error-msg, .hs-error-msgs label {
+  color: #b04a3a !important;
+  font-family: var(--sans) !important;
+  font-size: 12px !important;
+}
+.submitted-message {
+  font-family: var(--display) !important;
+  font-style: italic !important;
+  font-size: 22px !important;
+  color: var(--champagne-dim) !important;
+  line-height: 1.4 !important;
+}
+.hs-form fieldset { max-width: 100% !important; }
+
 </style>
 </head>
 <body>
