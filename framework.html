@@ -4,78 +4,98 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>The Brazil Readiness Framework™ — Digital Berg</title>
-  <meta name="description" content="47-point entry audit for global companies before deploying capital in Brazil. Free. Immediate. Built by Digital Berg.">
+  <meta name="description" content="47-point structural audit for global companies before deploying capital in Brazil. Free. Immediate. Built by Digital Berg.">
   <link rel="icon" href="/favicon.png">
 
-  <!-- Mesmas fontes do site principal — ajusta se necessário -->
+  <!-- MESMAS FONTES DO SITE PRINCIPAL -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&family=Barlow:wght@300;400;500;600&family=Barlow+Condensed:wght@400;500;600;700&display=swap" rel="stylesheet">
 
   <style>
+    /* ── RESET ── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    /* ── TOKENS — idênticos ao site principal ── */
     :root {
-      --champagne: #c4b896;
+      --bg:          #0f0e0c;
+      --bg2:         #141210;
+      --bg3:         #1a1714;
+      --border:      #2a2520;
+      --border-dim:  #1e1b18;
+      --text:        #f0ece4;
+      --text-muted:  #7a7268;
+      --text-dim:    #3a3530;
+      --champagne:   #c4b896;
       --champagne-bright: #d8cfb0;
-      --champagne-dim: #8c8267;
-      --bg: #0e0e0e;
-      --bg2: #141414;
-      --border: #1e1e1e;
-      --text: #f5f0e8;
-      --muted: #666;
+      --champagne-dim:    #8c8267;
+      --font-serif:  'Cormorant Garamond', Georgia, serif;
+      --font-sans:   'Barlow', sans-serif;
+      --font-cond:   'Barlow Condensed', sans-serif;
     }
 
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
 
     body {
       background: var(--bg);
       color: var(--text);
-      font-family: inherit;
+      font-family: var(--font-sans);
+      font-weight: 300;
       -webkit-font-smoothing: antialiased;
+      line-height: 1.6;
     }
 
-    /* ── NAV ── */
-    nav {
+    /* ── NAV — cópia do site principal ── */
+    #nav {
       position: fixed;
       top: 0; left: 0; right: 0;
-      z-index: 999;
-      padding: 20px 40px;
+      z-index: 100;
+      padding: 0 48px;
+      height: 64px;
       display: flex;
       align-items: center;
       justify-content: space-between;
-      background: linear-gradient(to bottom, #0e0e0e 60%, transparent);
+      background: linear-gradient(to bottom, var(--bg) 70%, transparent);
     }
     .nav-logo {
-      font-size: 12px;
+      font-family: var(--font-cond);
+      font-size: 15px;
       font-weight: 700;
-      letter-spacing: 3px;
+      letter-spacing: 4px;
       color: var(--text);
       text-decoration: none;
       text-transform: uppercase;
     }
+    .nav-logo span { color: var(--champagne); }
     .nav-links {
       display: flex;
       align-items: center;
-      gap: 28px;
+      gap: 36px;
       list-style: none;
     }
     .nav-links a {
-      font-size: 10px;
-      letter-spacing: 2px;
-      color: var(--muted);
-      text-decoration: none;
+      font-family: var(--font-cond);
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 3px;
       text-transform: uppercase;
+      color: var(--text-muted);
+      text-decoration: none;
       transition: color 0.2s;
     }
-    .nav-links a:hover { color: var(--text); }
+    .nav-links a:hover,
+    .nav-links a.active { color: var(--text); }
     .nav-links a.active { color: var(--champagne); }
     .nav-cta {
-      font-size: 10px;
-      letter-spacing: 2px;
-      color: var(--bg);
-      background: var(--text);
-      text-decoration: none;
+      font-family: var(--font-cond);
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 3px;
       text-transform: uppercase;
-      padding: 8px 18px;
-      font-weight: 700;
+      color: var(--bg);
+      background: var(--champagne);
+      text-decoration: none;
+      padding: 10px 22px;
       transition: background 0.2s;
     }
     .nav-cta:hover { background: var(--champagne-bright); }
@@ -86,251 +106,400 @@
       display: flex;
       flex-direction: column;
       justify-content: flex-end;
-      padding: 0 40px 80px;
+      padding: 0 48px 80px;
       position: relative;
       overflow: hidden;
     }
-    .hero-bg-line {
+    .hero::before {
+      content: '';
       position: absolute;
-      top: 0; bottom: 0; left: 40px;
+      top: 0; bottom: 0; left: 48px;
       width: 1px;
-      background: linear-gradient(to bottom, transparent, var(--champagne-dim) 30%, var(--champagne-dim) 70%, transparent);
-      opacity: 0.2;
+      background: linear-gradient(to bottom,
+        transparent 0%,
+        var(--champagne-dim) 20%,
+        var(--champagne-dim) 80%,
+        transparent 100%);
+      opacity: 0.15;
     }
-    .hero-eyebrow {
-      font-size: 9px;
-      letter-spacing: 3px;
-      color: var(--champagne);
+    .section-eyebrow {
+      font-family: var(--font-cond);
+      font-size: 10px;
+      font-weight: 500;
+      letter-spacing: 4px;
       text-transform: uppercase;
-      margin-bottom: 24px;
+      color: var(--champagne-dim);
       display: flex;
       align-items: center;
-      gap: 12px;
+      gap: 16px;
+      margin-bottom: 28px;
     }
-    .hero-eyebrow::before {
+    .section-eyebrow::before {
       content: '';
       display: block;
-      width: 24px;
+      width: 32px;
       height: 1px;
-      background: var(--champagne);
+      background: var(--champagne-dim);
     }
     .hero h1 {
-      font-size: clamp(40px, 7vw, 88px);
-      font-weight: 700;
-      line-height: 1.0;
+      font-family: var(--font-serif);
+      font-size: clamp(52px, 8vw, 104px);
+      font-weight: 600;
+      line-height: 0.95;
       letter-spacing: -1px;
-      max-width: 900px;
+      color: var(--text);
       margin-bottom: 32px;
     }
     .hero h1 em {
+      font-style: italic;
       font-weight: 400;
       color: var(--champagne);
-      font-style: italic;
     }
     .hero-sub {
-      font-size: clamp(14px, 1.5vw, 17px);
-      color: var(--muted);
-      line-height: 1.7;
-      max-width: 520px;
-      margin-bottom: 48px;
+      font-size: clamp(14px, 1.4vw, 16px);
+      color: var(--text-muted);
+      line-height: 1.75;
+      max-width: 480px;
+      margin-bottom: 52px;
+      font-weight: 300;
     }
-    .hero-meta {
+    .hero-stats {
       display: flex;
-      gap: 32px;
-      align-items: center;
+      gap: 0;
+      align-items: stretch;
     }
-    .hero-stat { text-align: left; }
+    .hero-stat {
+      padding: 0 32px 0 0;
+      margin-right: 32px;
+      border-right: 1px solid var(--border);
+    }
+    .hero-stat:last-child {
+      border-right: none;
+      margin-right: 0;
+    }
     .hero-stat-num {
-      font-size: 32px;
-      font-weight: 700;
+      font-family: var(--font-serif);
+      font-size: 40px;
+      font-weight: 300;
       color: var(--champagne);
       line-height: 1;
+      letter-spacing: -1px;
     }
     .hero-stat-label {
+      font-family: var(--font-cond);
       font-size: 9px;
-      color: #333;
-      letter-spacing: 2px;
-      text-transform: uppercase;
-      margin-top: 4px;
-    }
-    .hero-divider {
-      width: 1px;
-      height: 40px;
-      background: #222;
-    }
-
-    /* ── CONTENT ── */
-    .content {
-      max-width: 680px;
-      margin: 0 auto;
-      padding: 100px 40px;
-    }
-
-    /* Pillars */
-    .pillars-label {
-      font-size: 9px;
-      color: var(--champagne-dim);
+      font-weight: 500;
       letter-spacing: 3px;
       text-transform: uppercase;
-      margin-bottom: 4px;
+      color: var(--text-dim);
+      margin-top: 6px;
     }
-    .pillar-row {
-      display: flex;
-      align-items: baseline;
-      gap: 16px;
-      padding: 20px 0;
-      border-bottom: 1px solid var(--border);
-    }
-    .pillar-row:first-of-type { border-top: 1px solid var(--border); }
-    .pillar-num {
-      font-size: 10px;
-      letter-spacing: 2px;
-      color: var(--champagne);
-      font-family: monospace;
-      min-width: 28px;
-    }
-    .pillar-name { font-size: 14px; color: #555; flex: 1; }
-    .pillar-pts { font-size: 11px; color: #333; letter-spacing: 1px; }
 
-    /* Section divider */
-    .section-divider {
+    /* ── CONTAINER ── */
+    .container {
+      max-width: 840px;
+      margin: 0 auto;
+      padding: 0 48px;
+    }
+
+    /* ── SECTIONS ── */
+    .section { padding: 96px 0; }
+    .section + .section {
+      border-top: 1px solid var(--border-dim);
+    }
+
+    .section-label {
       display: flex;
       align-items: center;
-      gap: 16px;
-      margin: 72px 0 48px;
+      gap: 20px;
+      margin-bottom: 56px;
     }
-    .section-divider-line { flex: 1; height: 1px; background: var(--border); }
-    .section-divider-label {
+    .section-label-line { flex: 1; height: 1px; background: var(--border); }
+    .section-label span {
+      font-family: var(--font-cond);
       font-size: 9px;
-      color: var(--champagne-dim);
-      letter-spacing: 3px;
+      font-weight: 500;
+      letter-spacing: 4px;
       text-transform: uppercase;
+      color: var(--champagne-dim);
+      white-space: nowrap;
     }
 
-    /* Preview card */
+    /* ── INTRO TEXT ── */
+    .intro-text {
+      font-family: var(--font-serif);
+      font-size: clamp(22px, 2.5vw, 30px);
+      font-weight: 300;
+      line-height: 1.5;
+      color: var(--text-muted);
+      max-width: 680px;
+    }
+    .intro-text strong {
+      font-weight: 500;
+      color: var(--text);
+    }
+
+    /* ── PILLARS ── */
+    .pillar-row {
+      display: flex;
+      align-items: center;
+      gap: 24px;
+      padding: 22px 0;
+      border-bottom: 1px solid var(--border-dim);
+      transition: border-color 0.2s;
+    }
+    .pillar-row:first-of-type { border-top: 1px solid var(--border-dim); }
+    .pillar-row:hover { border-color: var(--border); }
+    .pillar-num {
+      font-family: var(--font-cond);
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 2px;
+      color: var(--champagne-dim);
+      min-width: 32px;
+    }
+    .pillar-name {
+      font-family: var(--font-serif);
+      font-size: 20px;
+      font-weight: 400;
+      color: var(--text-muted);
+      flex: 1;
+    }
+    .pillar-pts {
+      font-family: var(--font-cond);
+      font-size: 10px;
+      font-weight: 500;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--text-dim);
+    }
+
+    /* ── PREVIEW CARD ── */
     .preview-card {
-      border-left: 2px solid var(--champagne);
-      padding: 28px 28px 28px 24px;
+      border-left: 2px solid var(--champagne-dim);
+      padding: 36px 36px 36px 32px;
       background: var(--bg2);
-      margin-bottom: 48px;
       position: relative;
       overflow: hidden;
     }
     .preview-card::after {
       content: '';
       position: absolute;
-      bottom: -30px; right: -30px;
-      width: 120px; height: 120px;
-      background: linear-gradient(135deg, transparent 50%, #1a1a1a 50%);
+      bottom: -40px; right: -40px;
+      width: 160px; height: 160px;
+      background: linear-gradient(135deg, transparent 50%, var(--bg3) 50%);
+    }
+    .preview-card-eyebrow {
+      font-family: var(--font-cond);
+      font-size: 9px;
+      font-weight: 500;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--champagne-dim);
+      margin-bottom: 16px;
+    }
+    .preview-card h3 {
+      font-family: var(--font-serif);
+      font-size: 28px;
+      font-weight: 500;
+      color: var(--text);
+      line-height: 1.2;
+      margin-bottom: 8px;
+    }
+    .preview-card p {
+      font-size: 13px;
+      color: var(--text-dim);
+      letter-spacing: 0.5px;
+      margin-bottom: 24px;
+    }
+    .preview-tags {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      margin-bottom: 20px;
+    }
+    .preview-tag {
+      font-family: var(--font-cond);
+      font-size: 9px;
+      font-weight: 500;
+      letter-spacing: 2px;
+      padding: 4px 10px;
+      border: 1px solid var(--border);
+      color: var(--text-dim);
+    }
+    .preview-tag.active {
+      border-color: var(--champagne-dim);
+      color: var(--champagne);
+    }
+    .preview-footnote {
+      font-family: var(--font-cond);
+      font-size: 9px;
+      font-weight: 500;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--text-dim);
     }
 
-    /* Form */
+    /* ── FORM WRAPPER ── */
     .form-label {
       display: flex;
       align-items: center;
-      gap: 12px;
-      margin-bottom: 24px;
+      gap: 16px;
+      margin-bottom: 28px;
     }
     .form-label::before {
       content: '';
       display: block;
-      width: 24px;
+      width: 32px;
       height: 1px;
-      background: var(--champagne);
+      background: var(--champagne-dim);
     }
     .form-label span {
-      font-size: 9px;
-      color: var(--champagne);
+      font-family: var(--font-cond);
+      font-size: 10px;
+      font-weight: 500;
       letter-spacing: 3px;
       text-transform: uppercase;
+      color: var(--champagne-dim);
+    }
+    .form-placeholder {
+      border: 1px solid var(--border);
+      border-left: 2px solid var(--champagne-dim);
+      padding: 52px 32px;
+      text-align: center;
+    }
+    .form-placeholder p {
+      font-family: var(--font-cond);
+      font-size: 10px;
+      font-weight: 500;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--text-dim);
+      margin-bottom: 10px;
+    }
+    .form-placeholder span {
+      font-family: var(--font-cond);
+      font-size: 9px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--champagne-dim);
     }
 
     /* HubSpot overrides */
     #hs-framework-form .hs-form-field label {
-      color: #555 !important;
+      font-family: var(--font-cond) !important;
       font-size: 10px !important;
-      letter-spacing: 1.5px !important;
+      font-weight: 500 !important;
+      letter-spacing: 2px !important;
       text-transform: uppercase !important;
+      color: var(--text-muted) !important;
     }
     #hs-framework-form .hs-form input[type="text"],
     #hs-framework-form .hs-form input[type="email"] {
       background: var(--bg) !important;
-      border: 1px solid #2a2a2a !important;
-      color: var(--text) !important;
-      font-size: 13px !important;
-      padding: 12px 16px !important;
+      border: 1px solid var(--border) !important;
       border-radius: 0 !important;
+      color: var(--text) !important;
+      font-family: var(--font-sans) !important;
+      font-size: 14px !important;
+      padding: 13px 16px !important;
       width: 100% !important;
+      transition: border-color 0.2s !important;
     }
     #hs-framework-form .hs-form input:focus {
-      border-color: var(--champagne) !important;
+      border-color: var(--champagne-dim) !important;
       outline: none !important;
     }
     #hs-framework-form .hs-form input[type="submit"],
     #hs-framework-form .hs-button {
       background: var(--champagne) !important;
-      color: #0e0e0e !important;
+      color: var(--bg) !important;
       border: none !important;
-      font-weight: 700 !important;
-      font-size: 10px !important;
+      border-radius: 0 !important;
+      font-family: var(--font-cond) !important;
+      font-size: 11px !important;
+      font-weight: 600 !important;
       letter-spacing: 3px !important;
       text-transform: uppercase !important;
-      padding: 16px 24px !important;
+      padding: 15px 24px !important;
       width: 100% !important;
       cursor: pointer !important;
-      border-radius: 0 !important;
       margin-top: 8px !important;
+      transition: background 0.2s !important;
     }
     #hs-framework-form .hs-form input[type="submit"]:hover,
     #hs-framework-form .hs-button:hover {
       background: var(--champagne-bright) !important;
     }
     #hs-framework-form .submitted-message {
+      font-family: var(--font-serif) !important;
+      font-size: 18px !important;
+      font-weight: 400 !important;
       color: var(--champagne) !important;
-      font-size: 14px !important;
       text-align: center !important;
-      padding: 32px 0 !important;
-      letter-spacing: 1px !important;
+      padding: 40px 0 !important;
+      letter-spacing: 0.5px !important;
     }
 
-    /* Footer */
+    /* ── FOOTNOTE ── */
+    .footnote {
+      font-family: var(--font-cond);
+      font-size: 10px;
+      font-weight: 400;
+      letter-spacing: 1.5px;
+      color: var(--text-dim);
+      border-top: 1px solid var(--border-dim);
+      padding-top: 24px;
+      margin-top: 28px;
+      line-height: 1.7;
+    }
+
+    /* ── FOOTER ── */
     .page-footer {
-      padding: 48px 40px;
-      border-top: 1px solid var(--border);
+      border-top: 1px solid var(--border-dim);
+      padding: 40px 48px;
       display: flex;
       justify-content: space-between;
       align-items: center;
-      max-width: 100%;
     }
     .page-footer p {
-      font-size: 11px;
-      color: #333;
-      letter-spacing: 1px;
+      font-family: var(--font-cond);
+      font-size: 10px;
+      font-weight: 400;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--text-dim);
     }
     .page-footer a {
-      font-size: 11px;
+      font-family: var(--font-cond);
+      font-size: 10px;
+      font-weight: 500;
+      letter-spacing: 2px;
+      text-transform: uppercase;
       color: var(--champagne-dim);
       text-decoration: none;
-      letter-spacing: 1px;
+      transition: color 0.2s;
     }
     .page-footer a:hover { color: var(--champagne); }
 
-    /* Responsive */
+    /* ── RESPONSIVE ── */
     @media (max-width: 768px) {
-      nav { padding: 16px 24px; }
+      #nav { padding: 0 24px; }
       .nav-links { display: none; }
       .hero { padding: 0 24px 64px; }
-      .content { padding: 80px 24px; }
-      .hero-meta { gap: 20px; }
-      .page-footer { flex-direction: column; gap: 16px; text-align: center; }
+      .container { padding: 0 24px; }
+      .hero h1 { font-size: clamp(44px, 12vw, 72px); }
+      .hero-stats { gap: 24px; }
+      .hero-stat { padding-right: 24px; margin-right: 24px; }
+      .page-footer { flex-direction: column; gap: 16px; padding: 32px 24px; text-align: center; }
     }
   </style>
 </head>
 <body>
 
   <!-- NAV -->
-  <nav>
-    <a href="/" class="nav-logo">DBerg</a>
+  <nav id="nav">
+    <a href="/" class="nav-logo">D<span>Berg</span></a>
     <ul class="nav-links">
       <li><a href="/#protocol">The Method</a></li>
       <li><a href="/#tiers">Projects</a></li>
@@ -341,170 +510,141 @@
 
 
   <!-- HERO -->
-  <div class="hero">
-    <div class="hero-bg-line"></div>
-
-    <div class="hero-eyebrow">Free Resource — 2026 Edition</div>
-
+  <section class="hero">
+    <div class="section-eyebrow">Free Resource — 2026 Edition</div>
     <h1>
       The Brazil<br>
       Readiness<br>
       <em>Framework™</em>
     </h1>
-
     <p class="hero-sub">
-      47 structural checkpoints across five pillars.
-      One diagnostic read of where your entry thesis is exposed —
-      before the capital moves.
+      47 structural checkpoints across five pillars. One diagnostic read
+      of where your entry thesis is exposed — before the capital moves.
     </p>
-
-    <div class="hero-meta">
+    <div class="hero-stats">
       <div class="hero-stat">
         <div class="hero-stat-num">47</div>
         <div class="hero-stat-label">Checkpoints</div>
       </div>
-      <div class="hero-divider"></div>
       <div class="hero-stat">
         <div class="hero-stat-num">5</div>
         <div class="hero-stat-label">Pillars</div>
       </div>
-      <div class="hero-divider"></div>
       <div class="hero-stat">
         <div class="hero-stat-num">'26</div>
         <div class="hero-stat-label">Edition</div>
       </div>
     </div>
-  </div>
+  </section>
 
 
-  <!-- CONTENT -->
-  <div class="content">
-
-    <!-- Intro -->
-    <p style="font-size: 17px; color: #555; line-height: 1.75; margin-bottom: 40px;">
-      Most companies that fail in Brazil don't fail from lack of capital.
-      They fail from invisible structural gaps — the kind that only surface
-      after the resources are already deployed.
-    </p>
-    <p style="font-size: 17px; color: #333; line-height: 1.75; margin-bottom: 0;">
-      This framework was built to surface them first.
-    </p>
-
-
-    <!-- Pillars -->
-    <div class="section-divider">
-      <div class="section-divider-line"></div>
-      <span class="section-divider-label">Five structural pillars</span>
-      <div class="section-divider-line"></div>
-    </div>
-
-    <div class="pillars-label" style="margin-bottom: 4px;">What the audit covers</div>
-
-    <div class="pillar-row">
-      <span class="pillar-num">01</span>
-      <span class="pillar-name">Market Intelligence</span>
-      <span class="pillar-pts">9 checkpoints</span>
-    </div>
-    <div class="pillar-row">
-      <span class="pillar-num">02</span>
-      <span class="pillar-name">Operational Backbone</span>
-      <span class="pillar-pts">12 checkpoints</span>
-    </div>
-    <div class="pillar-row">
-      <span class="pillar-num">03</span>
-      <span class="pillar-name">Cultural &amp; Legal Adaptation</span>
-      <span class="pillar-pts">11 checkpoints</span>
-    </div>
-    <div class="pillar-row">
-      <span class="pillar-num">04</span>
-      <span class="pillar-name">Conversion Engine</span>
-      <span class="pillar-pts">8 checkpoints</span>
-    </div>
-    <div class="pillar-row">
-      <span class="pillar-num">05</span>
-      <span class="pillar-name">Strategic Ecosystem</span>
-      <span class="pillar-pts">7 checkpoints</span>
-    </div>
-
-
-    <!-- What you get -->
-    <div class="section-divider">
-      <div class="section-divider-line"></div>
-      <span class="section-divider-label">What you get</span>
-      <div class="section-divider-line"></div>
-    </div>
-
-    <div class="preview-card">
-      <p style="font-size: 9px; color: var(--champagne); letter-spacing: 3px; text-transform: uppercase; margin-bottom: 12px;">
-        Digital Berg — 2026 Edition
+  <!-- INTRO -->
+  <div class="container">
+    <div class="section">
+      <p class="intro-text">
+        Most companies that fail in Brazil don't fail from lack of capital.
+        They fail from <strong>invisible structural gaps</strong> — the kind
+        that only surface after the resources are already deployed.<br><br>
+        This framework was built to surface them first.
       </p>
-      <p style="font-size: 18px; font-weight: 700; color: var(--text); line-height: 1.2; margin-bottom: 8px; letter-spacing: 0.3px;">
-        The Brazil Readiness Framework™
-      </p>
-      <p style="font-size: 12px; color: #444; margin-bottom: 24px; letter-spacing: 0.5px;">
-        47-Point Entry Audit — Before Deploying Capital in Brazil
-      </p>
-      <div style="display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 20px;">
-        <span style="font-size: 9px; color: var(--champagne); border: 1px solid #c4b89644; padding: 3px 10px; letter-spacing: 1px;">P 01</span>
-        <span style="font-size: 9px; color: #333; border: 1px solid #222; padding: 3px 10px; letter-spacing: 1px;">P 02</span>
-        <span style="font-size: 9px; color: #333; border: 1px solid #222; padding: 3px 10px; letter-spacing: 1px;">P 03</span>
-        <span style="font-size: 9px; color: #333; border: 1px solid #222; padding: 3px 10px; letter-spacing: 1px;">P 04</span>
-        <span style="font-size: 9px; color: #333; border: 1px solid #222; padding: 3px 10px; letter-spacing: 1px;">P 05</span>
+    </div>
+
+
+    <!-- PILLARS -->
+    <div class="section">
+      <div class="section-label">
+        <div class="section-label-line"></div>
+        <span>Five structural pillars</span>
+        <div class="section-label-line"></div>
       </div>
-      <p style="font-size: 9px; color: #2e2e2e; letter-spacing: 2px; text-transform: uppercase;">
-        Developed by practitioners. Built for decision-makers.
-      </p>
-    </div>
 
-
-    <!-- Form -->
-    <div class="form-label">
-      <span>Get the Framework — Free</span>
-    </div>
-
-    <div id="hs-framework-form">
-      <!--
-      ════════════════════════════════════════════
-      SUBSTITUA ESTE PLACEHOLDER PELO EMBED:
-
-      <script charset="utf-8" type="text/javascript"
-        src="//js.hsforms.net/forms/embed/v2.js"></script>
-      <script>
-        hbspt.forms.create({
-          region: "eu1",
-          portalId: "SEU_PORTAL_ID",
-          formId: "SEU_FORM_ID"
-        });
-      </script>
-      ════════════════════════════════════════════
-      -->
-
-      <!-- PLACEHOLDER -->
-      <div style="
-        border: 1px solid #1e1e1e;
-        border-left: 2px solid var(--champagne-dim);
-        padding: 48px 24px;
-        text-align: center;
-      ">
-        <p style="color: #2a2a2a; font-size: 11px; margin-bottom: 10px; letter-spacing: 1px;">
-          ↑ Embed do formulário HubSpot aqui
-        </p>
-        <p style="color: var(--champagne-dim); font-size: 9px; letter-spacing: 2px; text-transform: uppercase;">
-          Full Name · Company · Email → Download
-        </p>
+      <div class="pillar-row">
+        <span class="pillar-num">01</span>
+        <span class="pillar-name">Market Intelligence</span>
+        <span class="pillar-pts">9 checkpoints</span>
+      </div>
+      <div class="pillar-row">
+        <span class="pillar-num">02</span>
+        <span class="pillar-name">Operational Backbone</span>
+        <span class="pillar-pts">12 checkpoints</span>
+      </div>
+      <div class="pillar-row">
+        <span class="pillar-num">03</span>
+        <span class="pillar-name">Cultural &amp; Legal Adaptation</span>
+        <span class="pillar-pts">11 checkpoints</span>
+      </div>
+      <div class="pillar-row">
+        <span class="pillar-num">04</span>
+        <span class="pillar-name">Conversion Engine</span>
+        <span class="pillar-pts">8 checkpoints</span>
+      </div>
+      <div class="pillar-row">
+        <span class="pillar-num">05</span>
+        <span class="pillar-name">Strategic Ecosystem</span>
+        <span class="pillar-pts">7 checkpoints</span>
       </div>
     </div>
 
-    <!-- Footnote -->
-    <p style="
-      font-size: 11px; color: #2a2a2a;
-      line-height: 1.7; letter-spacing: 0.5px;
-      border-top: 1px solid #181818;
-      padding-top: 20px; margin-top: 24px;
-    ">
-      Reviewed annually. Used by executives entering Brazil from Europe, North America, and Southeast Asia.
-    </p>
 
+    <!-- WHAT YOU GET -->
+    <div class="section">
+      <div class="section-label">
+        <div class="section-label-line"></div>
+        <span>What you get</span>
+        <div class="section-label-line"></div>
+      </div>
+
+      <div class="preview-card">
+        <p class="preview-card-eyebrow">Digital Berg — 2026 Edition</p>
+        <h3>The Brazil Readiness Framework™</h3>
+        <p>47-Point Entry Audit — Before Deploying Capital in Brazil</p>
+        <div class="preview-tags">
+          <span class="preview-tag active">P 01</span>
+          <span class="preview-tag">P 02</span>
+          <span class="preview-tag">P 03</span>
+          <span class="preview-tag">P 04</span>
+          <span class="preview-tag">P 05</span>
+        </div>
+        <p class="preview-footnote">Developed by practitioners. Built for decision-makers.</p>
+      </div>
+    </div>
+
+
+    <!-- FORM -->
+    <div class="section">
+      <div class="section-label">
+        <div class="section-label-line"></div>
+        <span>Get the Framework — Free</span>
+        <div class="section-label-line"></div>
+      </div>
+
+      <div id="hs-framework-form">
+        <!--
+        ══════════════════════════════════════════
+        SUBSTITUIR PELO EMBED DO HUBSPOT:
+
+        <script charset="utf-8" type="text/javascript"
+          src="//js.hsforms.net/forms/embed/v2.js"></script>
+        <script>
+          hbspt.forms.create({
+            region: "eu1",
+            portalId: "SEU_PORTAL_ID",
+            formId: "SEU_FORM_ID"
+          });
+        </script>
+        ══════════════════════════════════════════
+        -->
+        <div class="form-placeholder">
+          <p>↑ Embed do formulário HubSpot aqui</p>
+          <span>Full Name · Company · Email → Download</span>
+        </div>
+      </div>
+
+      <p class="footnote">
+        Reviewed annually. Used by executives entering Brazil
+        from Europe, North America, and Southeast Asia.
+      </p>
+    </div>
   </div>
 
 
