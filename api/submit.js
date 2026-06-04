@@ -9,29 +9,30 @@ export default async function handler(req, res) {
     return res.status(400).json({ error: 'Missing required fields' });
   }
 
+  const PORTAL_ID = '146086925';
+  const FORM_ID = '0a0f646c-3a8d-4d02-a9fa-b2d42f2da289';
+
   try {
+    const fields = [
+      { name: 'firstname', value: firstname },
+      { name: 'lastname', value: lastname || '' },
+      { name: 'email', value: email },
+      { name: 'company', value: company || '' }
+    ];
+
     const response = await fetch(
-      `https://api.hubapi.com/contacts/v1/contact/createOrUpdate/email/${encodeURIComponent(email)}/`,
+      `https://api.hsforms.com/submissions/v3/integration/submit/${PORTAL_ID}/${FORM_ID}`,
       {
         method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          'Authorization': `Bearer ${process.env.HUBSPOT_TOKEN}`
-        },
+        headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
-          properties: [
-            { property: 'email', value: email },
-            { property: 'firstname', value: firstname },
-            { property: 'lastname', value: lastname || '' },
-            { property: 'company', value: company || '' },
-            { property: 'hs_lead_status', value: 'NEW' },
-            { property: 'lead_source_detail', value: 'Brazil Readiness Framework LP' }
-          ]
+          fields,
+          context: { pageUri: 'https://digital-berg.com/framework.html', pageName: 'The Brazil Readiness Framework™' }
         })
       }
     );
 
-    if (response.ok || response.status === 409) {
+    if (response.ok) {
       return res.status(200).json({ success: true });
     }
 
@@ -43,4 +44,3 @@ export default async function handler(req, res) {
     return res.status(500).json({ error: 'Internal server error' });
   }
 }
-
