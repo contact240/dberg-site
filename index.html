@@ -1652,7 +1652,70 @@
 <!-- ============================================================
      FIM BLOCO 1
      ============================================================ -->
-  
+  <style>
+  /* ---------- PROTOCOL MAP ---------- */
+  #protocol-map .pm-legend{
+    margin-top:38px;padding:15px 22px;border:1px solid var(--line);
+    display:flex;flex-wrap:wrap;gap:10px 28px;align-items:center;background:var(--black-soft);
+  }
+  #protocol-map .pm-legend-label{font-family:var(--mono);font-size:10px;letter-spacing:.22em;text-transform:uppercase;color:var(--champagne-dim);margin-right:4px}
+  #protocol-map .pm-legend-item{font-family:var(--mono);font-size:12px;color:var(--bone-dim);display:flex;align-items:center;gap:8px}
+  #protocol-map .pm-legend-item i{font-style:normal;color:var(--champagne)}
+
+  #protocol-map .pm-ladder{margin-top:48px;position:relative}
+  #protocol-map .pm-spine{position:absolute;left:21px;top:10px;bottom:34px;width:1px;background:linear-gradient(var(--champagne-dim),var(--line) 16%,var(--line))}
+  @media(min-width:720px){#protocol-map .pm-spine{left:25px}}
+
+  #protocol-map .pm-rung{display:block;position:relative;padding-left:58px;margin-bottom:16px;text-decoration:none;color:inherit}
+  @media(min-width:720px){#protocol-map .pm-rung{padding-left:72px}}
+  #protocol-map .pm-node{position:absolute;left:13px;top:28px;width:18px;height:18px;border-radius:50%;background:var(--black);border:1.5px solid var(--champagne-dim);z-index:2}
+  @media(min-width:720px){#protocol-map .pm-node{left:17px}}
+  #protocol-map .pm-hero .pm-node{background:var(--champagne);border-color:var(--champagne);box-shadow:0 0 0 5px rgba(196,184,150,0.16)}
+
+  #protocol-map .pm-card{background:var(--black-soft);border:1px solid var(--line);padding:22px 26px;transition:border-color .35s ease,transform .35s ease,background .35s ease}
+  #protocol-map .pm-rung:hover .pm-card{border-color:var(--line-bright);transform:translateY(-2px);background:var(--black-elevated)}
+
+  #protocol-map .pm-meta{display:flex;flex-wrap:wrap;align-items:center;gap:8px 14px;margin-bottom:12px;font-family:var(--mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase}
+  #protocol-map .pm-code{color:var(--champagne)}
+  #protocol-map .pm-dot{width:3px;height:3px;border-radius:50%;background:var(--champagne-dim)}
+  #protocol-map .pm-stage{color:var(--bone-dim)}
+  #protocol-map .pm-price{margin-left:auto;color:var(--champagne-dim)}
+
+  #protocol-map .pm-card h3{font-family:var(--display);font-weight:400;font-size:23px;letter-spacing:-.015em;color:var(--bone);margin-bottom:8px;font-variation-settings:"opsz" 60}
+  #protocol-map .pm-card p{font-family:var(--sans);font-weight:300;color:var(--grey);font-size:14px;line-height:1.65;max-width:64ch}
+
+  #protocol-map .pm-foot{display:flex;flex-wrap:wrap;align-items:center;gap:12px 20px;margin-top:18px;padding-top:15px;border-top:1px solid var(--line)}
+  #protocol-map .pm-cover{display:flex;gap:5px}
+  #protocol-map .pm-seg{width:26px;height:6px;border:1px solid var(--champagne-dim);background:transparent}
+  #protocol-map .pm-seg.on{background:var(--champagne);border-color:var(--champagne)}
+  #protocol-map .pm-seg.partial{background:linear-gradient(90deg,var(--champagne) 50%,transparent 50%)}
+  #protocol-map .pm-key{font-family:var(--mono);font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--champagne-dim)}
+  #protocol-map .pm-time{font-family:var(--mono);font-size:11.5px;color:var(--bone-dim)}
+  #protocol-map .pm-time span{color:var(--champagne-dim)}
+
+  /* the hero rung — paid intake */
+  #protocol-map .pm-hero .pm-card{background:linear-gradient(180deg,var(--black-elevated),var(--black-soft));border-color:var(--champagne);position:relative;overflow:hidden;box-shadow:0 18px 44px -30px rgba(196,184,150,0.55)}
+  #protocol-map .pm-hero .pm-card::before{content:'';position:absolute;left:0;top:0;bottom:0;width:2px;background:var(--champagne)}
+  #protocol-map .pm-hero h3{color:var(--champagne-bright)}
+  #protocol-map .pm-hero .pm-price{color:var(--champagne)}
+  #protocol-map .pm-tag{font-family:var(--mono);font-size:9.5px;letter-spacing:.2em;text-transform:uppercase;color:var(--black);background:var(--champagne);padding:3px 9px}
+
+  /* ---------- ENTRY DIAGNOSTIC BLOCK ---------- */
+  #entry-diagnostic .ed-card{max-width:760px;margin:0 auto;border:1px solid var(--champagne);background:linear-gradient(180deg,var(--black-elevated),var(--black-soft));padding:clamp(36px,5vw,56px);position:relative;overflow:hidden}
+  #entry-diagnostic .ed-card::before{content:'';position:absolute;left:0;top:0;bottom:0;width:2px;background:var(--champagne)}
+  #entry-diagnostic .ed-eyebrow{font-family:var(--mono);font-size:10px;letter-spacing:.28em;text-transform:uppercase;color:var(--champagne);margin-bottom:22px}
+  #entry-diagnostic .ed-title{font-family:var(--display);font-weight:300;font-size:clamp(26px,3.4vw,40px);letter-spacing:-.02em;color:var(--bone);line-height:1.1;margin-bottom:18px;font-variation-settings:"opsz" 144}
+  #entry-diagnostic .ed-title em{font-style:italic;color:var(--champagne)}
+  #entry-diagnostic .ed-lead{font-family:var(--sans);font-weight:300;font-size:15px;line-height:1.75;color:var(--grey);max-width:62ch;margin-bottom:30px}
+  #entry-diagnostic .ed-list{list-style:none;margin:0 0 32px;display:grid;gap:12px}
+  #entry-diagnostic .ed-list li{font-family:var(--sans);font-weight:300;font-size:13.5px;line-height:1.6;color:var(--bone-dim);padding-left:18px;position:relative}
+  #entry-diagnostic .ed-list li::before{content:'';position:absolute;left:0;top:9px;width:6px;height:1px;background:var(--champagne)}
+  #entry-diagnostic .ed-meta{display:flex;flex-wrap:wrap;gap:10px 28px;align-items:baseline;padding:22px 0;margin-bottom:28px;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+  #entry-diagnostic .ed-price{font-family:var(--display);font-weight:400;font-size:26px;color:var(--champagne);letter-spacing:-.01em}
+  #entry-diagnostic .ed-credit{font-family:var(--mono);font-size:11px;letter-spacing:.08em;color:var(--bone-dim);text-transform:uppercase}
+  #entry-diagnostic .ed-format{font-family:var(--mono);font-size:11px;letter-spacing:.06em;color:var(--champagne-dim);margin-left:auto}
+  #entry-diagnostic .ed-note{margin-top:22px;font-family:var(--display);font-style:italic;font-size:14px;color:var(--champagne-dim)}
+</style>
 </head>
 <body>
 
@@ -1804,7 +1867,116 @@
     <p class="deliverables-footer">Not theory. A decision-grade plan that leadership can approve and execute.</p>
   </div>
 </section>
+<section class="reveal" id="protocol-map">
+  <div class="container">
+    <div class="section-eyebrow">The Path</div>
+    <h2>From first read to <em>live operation.</em></h2>
+    <p class="lead">Enter at the depth your operation requires. Every project covers a defined span of the four phases — and the order is inviolable. You cannot architect what hasn't been diagnosed.</p>
 
+    <div class="pm-legend">
+      <span class="pm-legend-label">Phases</span>
+      <span class="pm-legend-item"><i>01</i> Diagnose</span>
+      <span class="pm-legend-item"><i>02</i> Architect</span>
+      <span class="pm-legend-item"><i>03</i> Activate</span>
+      <span class="pm-legend-item"><i>04</i> Sustain</span>
+    </div>
+
+    <div class="pm-ladder">
+      <div class="pm-spine"></div>
+
+      <!-- Free audit -->
+      <a class="pm-rung pm-free" href="/framework.html">
+        <span class="pm-node"></span>
+        <div class="pm-card">
+          <div class="pm-meta"><span class="pm-code">00 · Readiness</span><span class="pm-dot"></span><span class="pm-stage">Self-diagnostic</span><span class="pm-price">Free</span></div>
+          <h3>Brazil Readiness Framework™</h3>
+          <p>A 47-point structural audit that surfaces the gaps most companies only discover after capital is deployed. Where you find out whether — and where — you enter the Protocol.</p>
+          <div class="pm-foot">
+            <div class="pm-cover"><span class="pm-seg"></span><span class="pm-seg"></span><span class="pm-seg"></span><span class="pm-seg"></span></div>
+            <span class="pm-key">Pre-Protocol</span>
+            <span class="pm-time">47 checkpoints · <span>reviewed annually</span></span>
+          </div>
+        </div>
+      </a>
+
+      <!-- Entry Diagnostic — HERO / paid intake -->
+      <a class="pm-rung pm-hero" href="#entry-diagnostic">
+        <span class="pm-node"></span>
+        <div class="pm-card">
+          <div class="pm-meta"><span class="pm-code">Paid intake</span><span class="pm-dot"></span><span class="pm-tag">New</span><span class="pm-price">€890 · credited</span></div>
+          <h3>The Entry Diagnostic</h3>
+          <p>A focused, confidential structural read of your entry thesis — booked, not pitched. The fixed-scope front door to the Protocol: it qualifies the operation and credits in full toward the Blueprint you choose.</p>
+          <div class="pm-foot">
+            <div class="pm-cover"><span class="pm-seg partial"></span><span class="pm-seg"></span><span class="pm-seg"></span><span class="pm-seg"></span></div>
+            <span class="pm-key">On-ramp · Phase 01</span>
+            <span class="pm-time">90-min session · <span>delivered in writing</span></span>
+          </div>
+        </div>
+      </a>
+
+      <!-- Blueprint Essentials -->
+      <a class="pm-rung" href="#tiers">
+        <span class="pm-node"></span>
+        <div class="pm-card">
+          <div class="pm-meta"><span class="pm-code">Phase 01</span><span class="pm-dot"></span><span class="pm-stage">Diagnose</span><span class="pm-price">Custom-scoped</span></div>
+          <h3>Blueprint Essentials</h3>
+          <p>The structural decision to enter. A diagnostic across five risk dimensions with G0–G3 decision gates and a prioritized roadmap — for those who need to decide with clarity, not instinct.</p>
+          <div class="pm-foot">
+            <div class="pm-cover"><span class="pm-seg on"></span><span class="pm-seg"></span><span class="pm-seg"></span><span class="pm-seg"></span></div>
+            <span class="pm-key">D</span>
+            <span class="pm-time">3–4 weeks</span>
+          </div>
+        </div>
+      </a>
+
+      <!-- Blueprint Executive -->
+      <a class="pm-rung" href="#tiers">
+        <span class="pm-node"></span>
+        <div class="pm-card">
+          <div class="pm-meta"><span class="pm-code">Phase 01 + 02</span><span class="pm-dot"></span><span class="pm-stage">Diagnose &amp; Architect</span><span class="pm-price">Custom-scoped</span></div>
+          <h3>Blueprint Executive</h3>
+          <p>The full architecture before execution. Everything in Essentials, plus the complete operational design — entity, tax, governance, distribution, compliance — validated by local specialists.</p>
+          <div class="pm-foot">
+            <div class="pm-cover"><span class="pm-seg on"></span><span class="pm-seg on"></span><span class="pm-seg"></span><span class="pm-seg"></span></div>
+            <span class="pm-key">D · A</span>
+            <span class="pm-time">6–8 weeks</span>
+          </div>
+        </div>
+      </a>
+
+      <!-- Go To Market -->
+      <a class="pm-rung" href="#tiers">
+        <span class="pm-node"></span>
+        <div class="pm-card">
+          <div class="pm-meta"><span class="pm-code">Phase 01 + 02 + 03</span><span class="pm-dot"></span><span class="pm-stage">Done-For-You</span><span class="pm-price">Custom-scoped</span></div>
+          <h3>Go To Market</h3>
+          <p>From architecture to real operation. End-to-end implementation with the DBerg Ecosystem deployed across every critical discipline — managed until the operation runs on its own.</p>
+          <div class="pm-foot">
+            <div class="pm-cover"><span class="pm-seg on"></span><span class="pm-seg on"></span><span class="pm-seg on"></span><span class="pm-seg"></span></div>
+            <span class="pm-key">D · A · A</span>
+            <span class="pm-time">4–9 months</span>
+          </div>
+        </div>
+      </a>
+
+      <!-- Run -->
+      <a class="pm-rung pm-sustain" href="#tiers">
+        <span class="pm-node"></span>
+        <div class="pm-card">
+          <div class="pm-meta"><span class="pm-code">Phase 04</span><span class="pm-dot"></span><span class="pm-stage">Sustain</span><span class="pm-price">Recurring</span></div>
+          <h3>Run</h3>
+          <p>Structure isn't built once — it's held. Executive-level oversight as the operation matures: quarterly recalibration, direct access to the founder, strategic continuity as conditions shift.</p>
+          <div class="pm-foot">
+            <div class="pm-cover"><span class="pm-seg"></span><span class="pm-seg"></span><span class="pm-seg"></span><span class="pm-seg on"></span></div>
+            <span class="pm-key">S</span>
+            <span class="pm-time">Monthly · <span>post-implementation</span></span>
+          </div>
+        </div>
+      </a>
+
+    </div>
+  </div>
+</section>
 <!-- ═══ PROJECT TIERS ═══ -->
 <section class="reveal" id="tiers">
   <div class="container">
@@ -1917,7 +2089,7 @@
         color: #8c8267;
         text-transform: uppercase;
         margin-bottom: 20px;
-      ">Before the project — the audit</p>
+      ">The first step · free audit</p>
 
       <h3 style="
         font-size: clamp(22px, 3vw, 36px);
@@ -1927,7 +2099,7 @@
         margin-bottom: 16px;
         letter-spacing: -0.3px;
       ">Not ready to commit yet?<br>
-      <em style="font-weight: 400; color: #c4b896;">Start with the diagnostic.</em></h3>
+      <em style="font-weight: 400; color: #c4b896;">Start with the audit.</em></h3>
 
       <p style="
         font-size: 15px;
