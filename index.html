@@ -1716,6 +1716,38 @@
   #entry-diagnostic .ed-format{font-family:var(--mono);font-size:11px;letter-spacing:.06em;color:var(--champagne-dim);margin-left:auto}
   #entry-diagnostic .ed-note{margin-top:22px;font-family:var(--display);font-style:italic;font-size:14px;color:var(--champagne-dim)}
 </style>
+  <style>
+  #router{position:fixed;inset:0;background:rgba(0,0,0,.85);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);z-index:1000;display:none;align-items:center;justify-content:center;padding:20px}
+  #router.active{display:flex}
+  #router .r-panel{background:var(--black-soft);border:1px solid var(--champagne);max-width:600px;width:100%;max-height:92vh;overflow-y:auto;padding:48px 44px;position:relative}
+  #router .r-close{position:absolute;top:18px;right:22px;background:none;border:none;color:var(--bone-dim);font-size:24px;cursor:pointer;width:32px;height:32px;transition:color .3s}
+  #router .r-close:hover{color:var(--champagne)}
+  #router .r-eyebrow{font-family:var(--mono);font-size:10px;letter-spacing:.26em;text-transform:uppercase;color:var(--champagne);margin-bottom:16px}
+  #router h3{font-family:var(--display);font-size:30px;font-weight:300;color:var(--bone);line-height:1.15;letter-spacing:-.02em;margin-bottom:12px;font-variation-settings:"opsz" 72}
+  #router .r-sub{font-size:13.5px;color:var(--grey);line-height:1.6;margin-bottom:34px;max-width:52ch}
+  #router .r-q{margin-bottom:26px}
+  #router .r-label{display:block;font-family:var(--mono);font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--champagne);margin-bottom:12px}
+  #router .r-opts{display:grid;gap:8px}
+  #router .opt{position:relative;cursor:pointer}
+  #router .opt input{position:absolute;opacity:0;pointer-events:none}
+  #router .opt span{display:block;padding:13px 16px;border:1px solid var(--line-bright);color:var(--bone-dim);font-size:13.5px;font-weight:300;transition:all .25s ease}
+  #router .opt:hover span{border-color:var(--champagne-dim);color:var(--bone)}
+  #router .opt input:checked + span{border-color:var(--champagne);background:rgba(196,184,150,.08);color:var(--champagne-bright)}
+  #router .r-fields{display:grid;grid-template-columns:1fr 1fr;gap:20px 22px;margin-top:32px;padding-top:30px;border-top:1px solid var(--line)}
+  @media(max-width:520px){#router .r-fields{grid-template-columns:1fr}#router .r-panel{padding:40px 26px}}
+  #router .r-fg{display:flex;flex-direction:column}
+  #router .r-fl{font-family:var(--mono);font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--champagne);margin-bottom:8px}
+  #router .r-in{width:100%;background:transparent;border:none;border-bottom:1px solid var(--line-bright);padding:10px 0;color:var(--bone);font-family:var(--sans);font-size:15px;font-weight:300;transition:border-color .3s}
+  #router .r-in:focus{outline:none;border-color:var(--champagne)}
+  #router .r-submit{grid-column:1 / -1;margin-top:8px;padding:16px;background:var(--champagne);color:var(--black);border:none;font-family:var(--sans);font-size:13px;font-weight:500;letter-spacing:.12em;text-transform:uppercase;cursor:pointer;transition:background .3s}
+  #router .r-submit:hover{background:var(--champagne-bright)}
+  #router .r-note{grid-column:1 / -1;font-size:11.5px;color:var(--grey-dim);line-height:1.5;text-align:center}
+  #router .r-success{display:none;text-align:center;padding:20px 0}
+  #router .r-success.active{display:block}
+  #router .r-success h3{color:var(--champagne);margin-bottom:14px}
+  #router .r-success p{font-size:14.5px;color:var(--grey);line-height:1.65}
+</style>
+
 </head>
 <body>
 
@@ -1728,7 +1760,7 @@
       <a href="/entry-diagnostic.html" class="nav-link">Entry Diagnostic</a>
       <a href="#tiers" class="nav-link">Projects</a>
       <a href="/framework.html" class="nav-link">Framework</a>
-      <a href="#" class="nav-link nav-link-primary" onclick="openModal(); return false;">Begin</a>
+      <a href="#" class="nav-link nav-link-primary"  onclick="openRouter(); return false;">Begin</a>
     </div>
     <button class="nav-toggle" onclick="toggleMenu()" aria-label="Menu">
       <span></span><span></span>
@@ -1744,7 +1776,7 @@
     <a href="/entry-diagnostic.html" onclick="toggleMenu()">Entry Diagnostic</a>
     <a href="#tiers" onclick="toggleMenu()">Projects</a>
     <a href="/framework.html" onclick="toggleMenu()">Framework</a>
-    <a href="#" onclick="toggleMenu(); openModal(); return false;">Begin</a>
+    <a href="#" onclick="toggleMenu(); openRouter(); return false;">Begin</a>
   </nav>
   <div class="mobile-menu-footer">Architecture First. Acceleration Second.</div>
 </div>
@@ -1757,7 +1789,7 @@
     <h1>The operational foundation foreign companies <em>skip</em> before entering Brazil.</h1>
     <p class="hero-sub">The Berg Architecture Protocol™ — a four-phase method that validates structure before capital meets the terrain.</p>
     <div class="hero-actions">
-      <a href="#" class="btn-primary" onclick="openModal(); return false;">Schedule a Strategic Conversation</a>
+      <a href="#" class="btn-primary" onclick=  onclick="openRouter(); return false;">Find your starting point</a>
     </div>
   </div>
 </section>
@@ -2290,7 +2322,7 @@
     <div class="section-eyebrow" style="justify-content: center;">Begin</div>
     <h2>Ready to build <em>before you launch?</em></h2>
     <p class="body">The cost of structural mistakes in Brazil compounds quietly — until it doesn't. The companies that arrive with architecture spend less, move faster, and operate with margins the unprepared never see.</p>
-    <a href="#" class="btn-primary" onclick="openModal(); return false;">Schedule a Strategic Conversation</a>
+    <a href="#" class="btn-primary" onclick=  onclick="openRouter(); return false;">Find your starting point</a>
   </div>
 </section>
 
@@ -2327,6 +2359,58 @@
     <p style="font-family: var(--mono); font-size: 10px; color: var(--grey-dim); margin-top: 24px; text-align: center; letter-spacing: 0.1em;">The Berg Architecture Protocol™ is a proprietary method of Digital Berg.</p>
   </div>
 </footer>
+<!-- ═══ STARTING POINT ROUTER ═══ -->
+<div id="router" onclick="if(event.target===this) closeRouter()">
+  <div class="r-panel">
+    <button class="r-close" type="button" onclick="closeRouter()">×</button>
+    <div id="router-content">
+      <div class="r-eyebrow">Confidential · reviewed personally</div>
+      <h3>Find your starting point.</h3>
+      <p class="r-sub">Three quick questions on where your Brazil entry stands. We'll point you to the right first step — the free audit, the Entry Diagnostic, or a direct conversation. No obligation.</p>
+      <form id="router-form" action="https://formspree.io/f/mkokadlj" method="POST" onsubmit="submitRouter(event)">
+        <div class="r-q">
+          <span class="r-label">Where does your Brazil entry stand?</span>
+          <div class="r-opts">
+            <label class="opt"><input type="radio" name="entry_stage" value="Exploring the idea" required><span>Exploring the idea</span></label>
+            <label class="opt"><input type="radio" name="entry_stage" value="Committed — planning the structure"><span>Committed — planning the structure</span></label>
+            <label class="opt"><input type="radio" name="entry_stage" value="Already operating — fixing or scaling"><span>Already operating — fixing or scaling</span></label>
+          </div>
+        </div>
+        <div class="r-q">
+          <span class="r-label">What are you trying to decide right now?</span>
+          <div class="r-opts">
+            <label class="opt"><input type="radio" name="decision" value="Whether to enter" required><span>Whether to enter</span></label>
+            <label class="opt"><input type="radio" name="decision" value="How to enter"><span>How to enter</span></label>
+            <label class="opt"><input type="radio" name="decision" value="How to fix what's already live"><span>How to fix what's already live</span></label>
+          </div>
+        </div>
+        <div class="r-q">
+          <span class="r-label">Timeline</span>
+          <div class="r-opts">
+            <label class="opt"><input type="radio" name="timeline" value="Exploring" required><span>Exploring</span></label>
+            <label class="opt"><input type="radio" name="timeline" value="Within 6 months"><span>Within 6 months</span></label>
+            <label class="opt"><input type="radio" name="timeline" value="Within 12 months"><span>Within 12 months</span></label>
+            <label class="opt"><input type="radio" name="timeline" value="Already entering"><span>Already entering</span></label>
+          </div>
+        </div>
+        <div class="r-fields">
+          <div class="r-fg"><label class="r-fl">Full Name</label><input class="r-in" type="text" name="full_name" required></div>
+          <div class="r-fg"><label class="r-fl">Company</label><input class="r-in" type="text" name="company" required></div>
+          <div class="r-fg"><label class="r-fl">Role</label><input class="r-in" type="text" name="role" required></div>
+          <div class="r-fg"><label class="r-fl">Email</label><input class="r-in" type="email" name="email" required></div>
+          <input type="hidden" name="_subject" value="Find Your Starting Point — Digital Berg">
+          <input type="hidden" name="inquiry_type" value="Starting Point Router">
+          <button type="submit" class="r-submit">See where I should start →</button>
+          <p class="r-note">Reviewed personally. You'll hear back within two business days with your recommended starting point.</p>
+        </div>
+      </form>
+    </div>
+    <div id="router-success" class="r-success">
+      <h3>Received.</h3>
+      <p>Thank you. I'll review where your entry stands and point you to the right starting point — personally, within two business days.</p>
+    </div>
+  </div>
+</div>
 
 <!-- ═══ MODAL ═══ -->
 <div class="modal-overlay" id="modal" onclick="if(event.target===this) closeModal()">
@@ -2468,10 +2552,23 @@
       submitBtn.disabled = false;
     }
   }
-  
+    function openRouter(){document.getElementById('router').classList.add('active');document.body.style.overflow='hidden'}
+  function closeRouter(){document.getElementById('router').classList.remove('active');document.body.style.overflow=''}
+  async function submitRouter(e){
+    e.preventDefault();
+    var form=document.getElementById('router-form');
+    var btn=form.querySelector('.r-submit');var orig=btn.textContent;
+    btn.textContent='Sending...';btn.disabled=true;
+    try{
+      var r=await fetch(form.action,{method:'POST',body:new FormData(form),headers:{'Accept':'application/json'}});
+      if(r.ok){document.getElementById('router-content').style.display='none';document.getElementById('router-success').classList.add('active');}
+      else{alert('There was a problem. Please email contact@digital-berg.com directly.');btn.textContent=orig;btn.disabled=false;}
+    }catch(err){alert('There was a problem. Please email contact@digital-berg.com directly.');btn.textContent=orig;btn.disabled=false;}
+  }
+
   // Esc to close modal
   document.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape') closeModal();
+        if (e.key === 'Escape') { closeModal(); closeRouter(); }
   });
 </script>
 
