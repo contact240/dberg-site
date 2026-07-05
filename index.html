@@ -2042,7 +2042,7 @@
             <span class="tier-meta-value">3–4 weeks</span>
           </div>
         </div>
-        <a href="#" class="tier-cta" onclick="openModal(); return false;">Start with Diagnosis</a>
+        <a href="#" class="tier-cta" onclick="openModal('blueprint'); return false;">Start with Diagnosis</a>
       </div>
       
       <div class="tier tier-featured">
@@ -2070,7 +2070,7 @@
             <span class="tier-meta-value">6–8 weeks</span>
           </div>
         </div>
-        <a href="#" class="tier-cta" onclick="openModal(); return false;">Build the Architecture</a>
+        <a href="#" class="tier-cta" onclick="openModal('blueprint'); return false;">Build the Architecture</a>
       </div>
       
       <div class="tier">
@@ -2095,7 +2095,7 @@
             <span class="tier-meta-value">4–9 months</span>
           </div>
         </div>
-        <a href="#" class="tier-cta" onclick="openModal(); return false;">Discuss Full Delivery</a>
+        <a href="#" class="tier-cta" onclick="openModal('blueprint'); return false;">Discuss Full Delivery</a>
       </div>
     </div>
     
@@ -2505,16 +2505,25 @@
   }
   
   // Modal
-     function openModal(context) {
-    var calendlyUrl = 'https://calendly.com/contact-digital-berg/30min';
-    var isMobile = window.innerWidth < 768 || /Mobi|Android|iPhone|iPad/i.test(navigator.userAgent);
-    if (isMobile || typeof Calendly === 'undefined') {
-      window.open(calendlyUrl, '_blank');
+       function openModal(context) {
+    var modal = document.getElementById('modal');
+    var title = document.getElementById('modal-title');
+    var sub = document.getElementById('modal-subtitle');
+    var itype = document.getElementById('inquiry-type');
+    if (context === 'blueprint') {
+      title.textContent = 'Blueprint — Scoping Conversation';
+      sub.textContent = 'A confidential note on your operation and which Blueprint fits. I review each personally and reply to open the conversation on sequence and scope.';
+      itype.value = 'Blueprint Scoping';
     } else {
-      Calendly.initPopupWidget({ url: calendlyUrl });
+      title.textContent = 'Strategic Conversation';
+      sub.textContent = 'A confidential note to assess fit, scope, and timeline. Reviewed personally before any next step.';
+      itype.value = 'Strategic Conversation';
     }
+    modal.classList.add('active');
+    document.body.style.overflow = 'hidden';
     return false;
   }
+
 
     function closeModal() {
     const modal = document.getElementById('modal');
