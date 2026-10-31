@@ -643,7 +643,7 @@
             <input type="email" id="email" placeholder="your@email.com" required autocomplete="email">
           </div>
           <button class="form-submit" id="submit-btn" onclick="handleSubmit()">
-            Download the Audit→</span>
+            Download the Audit <span class="arrow">→</span>
           </button>
           <p class="form-note">Your information is never shared or sold.</p>
         </div>
@@ -747,7 +747,7 @@
       errorEl.textContent = 'Something went wrong. Please try again or email contact@digital-berg.com';
       errorEl.classList.add('visible');
       btn.disabled = false;
-      btn.innerHTML = 'Download the Audit→</span>';
+      btn.innerHTML = 'Download the Audit <span class="arrow">→</span>';
     }
   }
 
