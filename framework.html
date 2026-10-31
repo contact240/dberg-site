@@ -279,13 +279,15 @@
     .pillar:last-child { border-bottom: none; }
   }
 
-  .pillar {
+    .pillar {
     padding: 48px 32px;
     border-right: 1px solid var(--line);
+    border-bottom: 1px solid var(--line);
     transition: background 0.4s ease;
   }
 
-  .pillar:last-child { border-right: none; }
+  .pillar:nth-child(3n) { border-right: none; }
+  .pillar:nth-last-child(-n+3) { border-bottom: none; }
   .pillar:hover { background: var(--black-elevated); }
 
   .pillar-number {
