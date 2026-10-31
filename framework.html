@@ -286,10 +286,16 @@
     border-bottom: 1px solid var(--line);
   }
 
-  @media (max-width: 900px) {
-    .pillars-grid { grid-template-columns: 1fr; }
-    .pillar { border-right: none !important; border-bottom: 1px solid var(--line); }
-    .pillar:last-child { border-bottom: none; }
+    @media (max-width: 900px) {
+    .pillars-grid { grid-template-columns: repeat(2,1fr); margin-top: 32px; }
+    .pillar { padding: 24px 18px; }
+    .pillar:nth-child(3n) { border-right: 1px solid var(--line); }
+    .pillar:nth-child(2n) { border-right: none; }
+    .pillar:nth-last-child(-n+3) { border-bottom: 1px solid var(--line); }
+    .pillar:nth-last-child(-n+2) { border-bottom: none; }
+    .pillar-number { margin-bottom: 12px; }
+    .pillar-name { font-size: 17px; margin-bottom: 8px; }
+    .pillar-count { font-size: 11px; }
   }
 
     .pillar {
